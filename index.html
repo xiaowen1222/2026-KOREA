@@ -1,923 +1,906 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seoul & Jeju 2026 Family Trip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --primary-color: #2c3e50;
+            --accent-color: #4A90E2;
+            --text-muted: #95a5a6;
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            margin: 0;
+            padding-bottom: 80px; /* 為底部選單留空間 */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Header Carousel (跑馬燈) Styles --- */
+        .header-carousel-container {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 300%; /* 3張圖 = 300% */
+            height: 100%;
+            animation: slideShow 15s infinite alternate ease-in-out;
+        }
+
+        .carousel-image {
+            width: 33.333%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7); /* 降低亮度讓文字更清晰 */
+        }
+
+        @keyframes slideShow {
+            0%, 30% { transform: translateX(0); }
+            35%, 65% { transform: translateX(-33.333%); }
+            70%, 100% { transform: translateX(-66.666%); }
+        }
+
+        .header-overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            width: 90%;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .header-overlay-text h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header-overlay-text .subtitle {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* --- Content & Daily Map Styles --- */
+        .content-section { display: none; padding: 20px; animation: fadeIn 0.3s ease; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .day-selector {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+            margin-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .day-selector::-webkit-scrollbar { display: none; }
+
+        .day-chip {
+            padding: 8px 16px;
+            background: #EEE;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .day-chip.active { background: var(--primary-color); color: white; }
+
+        /* 每日地圖圖片樣式 */
+        .day-map-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* --- Cards & Timeline Styles --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 22px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .time-tag { font-size: 14px; font-weight: 700; color: var(--accent-color); min-width: 48px; padding-top: 2px;}
+        .event-info h4 { margin: 0 0 6px 0; font-size: 17px; font-weight: 700; }
+        .event-info p { margin: 0; font-size: 15px; color: #666; line-height: 1.5; }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #F0F4F8;
+            color: var(--accent-color);
+            border-radius: 6px;
+            font-size: 12px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* --- Bottom Navigation Styles --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 20px 0; /* 增加底部 padding 適配新款手機 */
+            border-top: 1px solid #EEE;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-item {
+            border: none;
+            background: none;
+            font-size: 12px;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 15px;
+        }
+
+        .nav-item.active { color: var(--accent-color); }
+        .nav-item.active .nav-icon { transform: scale(1.1); transition: transform 0.2s; }
+        .nav-icon { font-size: 22px; }
+/* 回到頂端按鈕樣式 */
+.back-to-top {
+    position: fixed;
+    bottom: 100px; /* 避開底部選單高度 */
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0; /* 預設隱藏 */
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 20px;
+}
+
+/* 當按鈕顯示時的狀態 */
+.back-to-top.show {
+    opacity: 0.85;
+    visibility: visible;
+}
+
+/* 點擊時的小縮放效果 */
+.back-to-top:active {
+    transform: scale(0.9);
+}
+      /* 勾選清單樣式 */
+.checklist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.checklist-item:last-child {
+    border-bottom: none;
+}
+
+/* 自定義勾選框大小與顏色 */
+.checklist-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    accent-color: var(--accent-color); /* 使用原本定義的藍色 */
+    cursor: pointer;
+}
+
+/* 勾選後的文字效果：變灰色並加刪除線 */
+.checklist-item input:checked + span {
+    color: #bbb;
+    text-decoration: line-through;
+}
+
+.checklist-title {
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+      /* 連結按鈕組樣式 */
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.link-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    background-color: #f1f3f5;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid #dee2e6;
+}
+
+.link-btn:active {
+    background-color: #e9ecef;
+    transform: scale(0.95);
+}
+
+/* 強調型按鈕 (用於入境申請) */
+.link-btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+}
+
+.app-box {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #eee;
+}
+
+.app-box:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+    </style>
 </head>
+
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+  
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html lang="zh-TW"&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;title&gt;Seoul &amp; Jeju 2026 Family Trip&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>:root {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--bg-color: #F8F9FA;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--card-bg: #FFFFFF;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--primary-color: #2c3e50;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--accent-color: #4A90E2;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--text-muted: #95a5a6;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>--border-radius: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>body {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding-bottom: 80px; /* 為底部選單留空間 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>-webkit-font-smoothing: antialiased;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* --- Header Carousel (跑馬燈) Styles --- */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-carousel-container {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: relative;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 220px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow: hidden;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.carousel-slides {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 300%; /* 3張圖 = 300% */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>animation: slideShow 15s infinite alternate ease-in-out;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.carousel-image {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 33.333%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>object-fit: cover;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>filter: brightness(0.7); /* 降低亮度讓文字更清晰 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@keyframes slideShow {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>0%, 30% { transform: translateX(0); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>35%, 65% { transform: translateX(-33.333%); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>70%, 100% { transform: translateX(-66.666%); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-overlay-text {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: absolute;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>top: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>left: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transform: translate(-50%, -50%);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-align: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 10;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 90%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>text-shadow: 0 2px 4px rgba(0,0,0,0.5);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-overlay-text h1 {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 26px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.header-overlay-text .subtitle {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>opacity: 0.9;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* --- Content &amp; Daily Map Styles --- */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.content-section { display: none; padding: 20px; animation: fadeIn 0.3s ease; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.content-section.active { display: block; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.day-selector {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>overflow-x: auto;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding-bottom: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>scrollbar-width: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.day-selector::-webkit-scrollbar { display: none; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.day-chip {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 8px 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #EEE;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>white-space: nowrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.day-chip.active { background: var(--primary-color); color: white; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* 每日地圖圖片樣式 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.day-map-image {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>height: 180px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>object-fit: cover;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 10px rgba(0,0,0,0.08);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(0,0,0,0.05);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* --- Cards &amp; Timeline Styles --- */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.card {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: var(--card-bg);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: var(--border-radius);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 22px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 8px rgba(0,0,0,0.04);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: 1px solid rgba(0,0,0,0.03);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.timeline-item {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-bottom: 24px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: relative;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.timeline-item:last-child { margin-bottom: 0; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.time-tag { font-size: 14px; font-weight: 700; color: var(--accent-color); min-width: 48px; padding-top: 2px;}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.event-info h4 { margin: 0 0 6px 0; font-size: 17px; font-weight: 700; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.event-info p { margin: 0; font-size: 15px; color: #666; line-height: 1.5; }</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.badge {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: inline-block;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 3px 10px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: #F0F4F8;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--accent-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-radius: 6px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>margin-top: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>/* --- Bottom Navigation Styles --- */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.bottom-nav {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>position: fixed;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>bottom: 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>width: 100%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: rgba(255, 255, 255, 0.95);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(10px);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>justify-content: space-around;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 10px 0 20px 0; /* 增加底部 padding 適配新款手機 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border-top: 1px solid #EEE;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>z-index: 1000;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>box-shadow: 0 -2px 10px rgba(0,0,0,0.03);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-item {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>border: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>background: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>font-size: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>color: var(--text-muted);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>flex-direction: column;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>gap: 5px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>padding: 5px 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-item.active { color: var(--accent-color); }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-item.active .nav-icon { transform: scale(1.1); transition: transform 0.2s; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>.nav-icon { font-size: 22px; }</span></p>
-<p class="p1"><span class="s1">/* 回到頂端按鈕樣式 */</span></p>
-<p class="p1"><span class="s1">.back-to-top {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>position: fixed;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>bottom: 100px; /* 避開底部選單高度 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>right: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 45px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 45px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background-color: var(--primary-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-radius: 50%;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>justify-content: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>box-shadow: 0 4px 12px rgba(0,0,0,0.15);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>z-index: 999;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>opacity: 0; /* 預設隱藏 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>visibility: hidden;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transition: all 0.3s ease;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 20px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* 當按鈕顯示時的狀態 */</span></p>
-<p class="p1"><span class="s1">.back-to-top.show {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>opacity: 0.85;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>visibility: visible;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* 點擊時的小縮放效果 */</span></p>
-<p class="p1"><span class="s1">.back-to-top:active {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transform: scale(0.9);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>/* 勾選清單樣式 */</span></p>
-<p class="p1"><span class="s1">.checklist-item {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding: 10px 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-bottom: 1px solid #f0f0f0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 15px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.checklist-item:last-child {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-bottom: none;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* 自定義勾選框大小與顏色 */</span></p>
-<p class="p1"><span class="s1">.checklist-item input[type="checkbox"] {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>width: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>height: 20px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-right: 12px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>accent-color: var(--accent-color); /* 使用原本定義的藍色 */</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>cursor: pointer;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* 勾選後的文字效果：變灰色並加刪除線 */</span></p>
-<p class="p1"><span class="s1">.checklist-item input:checked + span {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: #bbb;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>text-decoration: line-through;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.checklist-title {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin: 20px 0 10px 0;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 16px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: 700;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: var(--primary-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>/* 連結按鈕組樣式 */</span></p>
-<p class="p1"><span class="s1">.btn-group {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>flex-wrap: wrap;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>gap: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-top: 10px;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.link-btn {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>display: inline-flex;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>align-items: center;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding: 8px 14px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background-color: #f1f3f5;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: var(--primary-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>text-decoration: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-radius: 8px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-size: 13px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>font-weight: 500;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transition: all 0.2s;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border: 1px solid #dee2e6;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.link-btn:active {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background-color: #e9ecef;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>transform: scale(0.95);</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">/* 強調型按鈕 (用於入境申請) */</span></p>
-<p class="p1"><span class="s1">.link-btn-primary {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>background-color: var(--accent-color);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>color: white;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border: none;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.app-box {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-bottom: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>padding-bottom: 15px;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-bottom: 1px dashed #eee;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">.app-box:last-child {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>border-bottom: none;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>margin-bottom: 0;</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;button class="back-to-top" id="backToTop" onclick="scrollToTop()"&gt;↑&lt;/button&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;header class="header-carousel-container"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="carousel-slides"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://picsum.photos/800/400?random=1" class="carousel-image" alt="Korea Image 1"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://picsum.photos/800/400?random=2" class="carousel-image" alt="Korea Image 2"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://picsum.photos/800/400?random=3" class="carousel-image" alt="Korea Image 3"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="header-overlay-text"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h1&gt;🇰🇷 2026 韓國家庭旅行&lt;/h1&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="subtitle"&gt;9月13日 - 9月19日 • 7位成員 (含長輩與小孩)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/header&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div id="section-prep" class="content-section"&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="checklist-title"&gt;📄 必備證件 (身分/交通)&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;護照 (效期需6個月以上)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;台灣駕照正本 (自駕組必帶)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;國際駕照英譯本 (自駕組必帶)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;Q-Code / K-ETA 截圖 (視當時規定)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;機票 &amp; 住宿憑證 (手機儲存一份)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="checklist-title"&gt;🎒 必帶清單 (生活/電力)&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;韓國轉接頭 (雙圓頭 Type C/F)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;行動電源 &amp; 充電線&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;WOWPASS 卡 / T-money 卡&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;換好少量韓幣現金 (₩10萬起)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;輕便摺疊傘 或 雨衣&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="checklist-title"&gt;💊 長輩與小孩特別備品&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;長輩常備藥 (血壓/慢性病藥)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;小兒退燒藥 / 止瀉藥 / 感冒藥&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;小孩習慣的餐具 (韓國多為扁筷)&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;label class="checklist-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;input type="checkbox"&gt; &lt;span&gt;OK 繃 / 簡單外傷藥膏&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/label&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card" style="background: #FFF9E6; border:none;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="font-size: 13px; color: #856404; margin: 0;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>💡 &lt;strong&gt;提示：&lt;/strong&gt;本清單僅供參考，勾選狀態在重新整理網頁後會消失，建議出發當天做最後確認！</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>&lt;div class="card" style="border-top: 4px solid var(--accent-color);"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="checklist-title"&gt;✈️ 行前電子入境&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p style="font-size: 13px; color: #666; margin-bottom: 12px;"&gt;建議於出發前 72 小時內完成：&lt;/p&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="btn-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="https://www.k-eta.go.kr/" target="_blank" class="link-btn link-btn-primary"&gt;K-ETA 官方申請&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;a href="https://qcode.kdca.go.kr/" target="_blank" class="link-btn link-btn-primary"&gt;Q-Code 入境檢疫填寫&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;p style="font-size: 11px; color: #999; margin-top: 8px;"&gt;※ 申請完成後建議將 QR Code 截圖存於手機相簿。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="checklist-title"&gt;📱 必載 App (交通/翻譯/消費)&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="app-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="margin:0; font-size:14px;"&gt;&lt;strong&gt;Naver Map&lt;/strong&gt; (韓國地圖最準)&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="btn-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://apps.apple.com/app/naver-map/id311867728" target="_blank" class="link-btn"&gt;iOS 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://play.google.com/store/apps/details?id=com.nhn.android.nmap" target="_blank" class="link-btn"&gt;Android 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="app-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="margin:0; font-size:14px;"&gt;&lt;strong&gt;Papago&lt;/strong&gt; (最強韓文翻譯/圖片翻譯)&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="btn-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://apps.apple.com/app/naver-papago-ai-translator/id1147874329" target="_blank" class="link-btn"&gt;iOS 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://play.google.com/store/apps/details?id=com.naver.labs.translator" target="_blank" class="link-btn"&gt;Android 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="app-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="margin:0; font-size:14px;"&gt;&lt;strong&gt;WOWPASS&lt;/strong&gt; (匯率查看/卡片餘額)&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="btn-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://apps.apple.com/app/wowpass/id1614532283" target="_blank" class="link-btn"&gt;iOS 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://play.google.com/store/apps/details?id=io.orangebottle.wowpass" target="_blank" class="link-btn"&gt;Android 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="app-box"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="margin:0; font-size:14px;"&gt;&lt;strong&gt;Kakao T&lt;/strong&gt; (韓國叫車首選)&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="btn-group"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://apps.apple.com/app/kakao-t/id981110467" target="_blank" class="link-btn"&gt;iOS 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;a href="https://play.google.com/store/apps/details?id=com.kakao.taxi" target="_blank" class="link-btn"&gt;Android 下載&lt;/a&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1">&lt;div id="section-flight" class="content-section"&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3 style="border-left: 5px solid var(--accent-color); padding-left: 10px; margin-top: 25px;"&gt;🛫 9/13 (週日) 去程：出發韓國&lt;/h3&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card flight-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge" style="background: #006241; color: white;"&gt;長榮航空 BR170 (2大1小)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;TPE 桃園 T2&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="plane-icon"&gt;✈️&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;ICN 仁川 T1&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;時間：07:30 - 11:00&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card flight-card" style="border-left-color: #5c2c91;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge" style="background: #184497; color: white;"&gt;中華航空 CI164 (4位大人)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;KHH 高雄 I&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="plane-icon"&gt;✈️&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;ICN 仁川 T2&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;時間：07:05 - 11:00&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p style="font-size: 12px; color: #e74c3c;"&gt;※ 提醒：兩組分別在 T1 與 T2 抵達，需約定匯合地點。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3 style="border-left: 5px solid #27ae60; padding-left: 10px; margin-top: 25px;"&gt;✈️ 國內線：首爾 ↔ 濟州&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge"&gt;9/14 (週一) 前往濟州&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route" style="font-size: 16px;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;GMP 金浦&lt;/span&gt; &lt;span class="plane-icon"&gt;→&lt;/span&gt; &lt;span&gt;CJU 濟州&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;航班：&lt;strong&gt;KE1341&lt;/strong&gt; | 10:15 - 11:30&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge"&gt;9/17 (週四) 返回首爾&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route" style="font-size: 16px;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;CJU 濟州&lt;/span&gt; &lt;span class="plane-icon"&gt;→&lt;/span&gt; &lt;span&gt;GMP 金浦&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;航班：&lt;strong&gt;KE1107&lt;/strong&gt; | 12:45 - 14:00&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;h3 style="border-left: 5px solid var(--accent-color); padding-left: 10px; margin-top: 25px;"&gt;🛬 9/19 (週六) 回程：返台&lt;/h3&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">    </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card flight-card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge" style="background: #006241; color: white;"&gt;長榮航空 BR169 (2大1小)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;ICN 仁川 T1&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="plane-icon"&gt;✈️&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;TPE 桃園 T2&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;時間：12:00 - 13:35&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card flight-card" style="border-left-color: #5c2c91;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="badge" style="background: #184497; color: white;"&gt;中華航空 CI165 (4位大人)&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="flight-route"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;ICN 仁川 T2&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span class="plane-icon"&gt;✈️&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;span&gt;KHH 高雄 I&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;p&gt;&lt;strong&gt;時間：12:05 - 14:05&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div id="section-itinerary" class="content-section active"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="day-selector"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip active" onclick="switchDay('d1')"&gt;D1 首爾&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d2')"&gt;D2 飛濟州&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d3')"&gt;D3 濟州東&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d4')"&gt;D4 濟州南&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d5')"&gt;D5 回首爾&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d6')"&gt;D6 市區&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;button class="day-chip" onclick="switchDay('d7')"&gt;D7 返台&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d1" class="day-tab active"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;img src="https://picsum.photos/600/300?random=map1" class="day-map-image" alt="Day 1 Map"&gt;</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;11:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;抵達仁川機場 (ICN) [cite: 4]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;通關、換錢、購買 T-money 卡 (全家共用 ₩10,000) [cite: 14]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;12:40&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;午餐：設半烤排骨湯魔谷店 [cite: 14]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;豬肉湯飯、米腸湯、烤排骨。人均 ₩15,000 [cite: 14]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;14:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;首爾植物園散步 [cite: 15]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;溫室、湖邊步道、孩子遊樂區 [cite: 15]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;span class="badge"&gt;成人 ₩5,000 / 6歲免費 [cite: 15]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;18:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;分流活動 [cite: 15]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>&lt;p&gt;A組(長輩)：回 Airbnb 休息。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;B組(年輕人+小孩)：金浦現代 Outlet 購物 [cite: 15]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;19:15&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;宵夜：橋村炸雞 (馬谷店) [cite: 15]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;全家共聚吃炸雞啤酒 (치맥) [cite: 15]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d2" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="Jeju.png" class="day-map-image" alt="Day 2 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;10:15&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;飛往濟州島 [cite: 32]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;金浦飛濟州 (如 KE1341)，約1小時15分 [cite: 32]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;11:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;樂天租車取車 [cite: 36]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;車型：Carnival 9座 + 兒童座椅 [cite: 36]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;13:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;石頭文化公園 [cite: 37]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;平坦步道，適合長輩與小孩，室內有空調 [cite: 37]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;15:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;東門市場 [cite: 37]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;購買新鮮水果、炸物小吃、伴手禮 [cite: 37]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;18:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;晚餐：濟州黑豬肉一條街 [cite: 37]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;烤黑豬肉，小菜無限享用。人均 ₩25,000 [cite: 37]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d3" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="Jeju.png" class="day-map-image" alt="Day 3 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;09:20&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;萬丈窟 (UNESCO) [cite: 40]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;平坦水泥路，室內涼爽適合全家 [cite: 40]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;10:40&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;城山日出峰 [cite: 40]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;山腳散步、幼童玩耍；年輕人可自行登山頂 [cite: 40]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;14:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;海女表演 [cite: 40]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;城山山腳海邊免費表演 [cite: 40]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;16:40&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;Aqua Planet Jeju 水族館 [cite: 41]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;鯊魚隧道、海豚表演，小孩最愛 [cite: 41]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;span class="badge"&gt;成人 ₩24,000 / 小孩 ₩18,000 [cite: 41]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;19:35&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;晚餐：帶魚燉煮 [cite: 41]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;濟州市海邊餐廳，人均 ₩25,000 [cite: 41]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d4" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="Jeju.png" class="day-map-image" alt="Day 4 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;09:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;Osulloc 綠茶體驗 [cite: 44]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;茶田散步、吃綠茶冰淇淋、買伴手禮 [cite: 44]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;10:20&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;柱狀節理帶 [cite: 45]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;觀賞六角形熔岩柱海景，走海岸棧道 [cite: 45]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;11:20&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;正房瀑布 [cite: 45]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;全韓國唯一直接入海的瀑布 [cite: 45]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;13:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;閒德海灘遊玩 [cite: 45]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;玩沙、拍照、長輩休息 [cite: 45]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;14:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;Penguin 半潛艇體驗 [cite: 45]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;約30分海底旅遊，看珊瑚魚群 (需預約) [cite: 45]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;16:00&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;晚餐：大閘蟹大餐 [cite: 45]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;蟹鍋、蒸蟹、海鮮套餐。人均 ₩40,000 [cite: 45]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d5" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="https://picsum.photos/600/300?random=map5" class="day-map-image" alt="Day 5 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;07:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;早餐：倫敦貝果博物館 (濟州店) [cite: 50]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;貝果+咖啡，可打包在路上吃 [cite: 50]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;08:30&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;前往濟州機場 [cite: 50]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;辦理樂天還車，辦理國內線登機 [cite: 50]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;12:45&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;飛回金浦機場 [cite: 50]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;國內線班機 (如 KE1107) [cite: 50]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;下午&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;入住首爾市區飯店 [cite: 55]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;建議地點：明洞或江南 [cite: 55]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d6" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="https://picsum.photos/600/300?random=map6" class="day-map-image" alt="Day 6 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="event-info" style="margin-bottom: 15px;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>[cite_start]&lt;span class="badge" style="font-size: 14px; background: var(--primary-color); color: white;"&gt;今日主題：首爾市區精華遊 [cite: 51]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;建議&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;逛街購物 [cite: 54]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;明洞或弘大商圈採買 [cite: 53]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;景點&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;文化體驗 [cite: 54]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;參觀景福宮、N首爾塔 [cite: 54]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;晚餐&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;烤鰻魚晚餐 [cite: 54]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;享受首爾美食夜 [cite: 54]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div id="day-d7" class="day-tab" style="display:none"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">         </span>&lt;img src="https://picsum.photos/600/300?random=map7" class="day-map-image" alt="Day 7 Map"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;上午&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;前往仁川國際機場 [cite: 57]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;搭乘 AREX EXPRESS (約43分) [cite: 57]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="time-tag"&gt;12:05&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;div class="event-info"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;h4&gt;飛機起飛回台灣 [cite: 57]&lt;/h4&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                    </span>[cite_start]&lt;p&gt;班次 BR261 或相似航班 [cite: 57]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div id="section-stay" class="content-section"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3 style="margin-top:0"&gt;🏠 首爾 (Day 1)&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p&gt;&lt;strong&gt;松亭站 Airbnb (송정역 에어비앤비) [cite: 10]&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p style="font-size:14px; color:#666;"&gt;地址：서울 강서구 공항대로 지하33 (空港洞29-5) [cite: 11]&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;span class="badge"&gt;靠近地鐵5號線 513站 [cite: 12]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;span class="badge"&gt;11:00後可寄行李 [cite: 12]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3 style="margin-top:0"&gt;🏠 濟州 (Day 2-4)&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p&gt;&lt;strong&gt;濟州市飯店 [cite: 34]&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p style="font-size:14px; color:#666;"&gt;位置：濟州市三徒一洞 [cite: 34]&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;span class="badge"&gt;機場近 [cite: 34]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;span class="badge"&gt;美食方便 [cite: 34]&lt;/span&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;h3 style="margin-top:0"&gt;🏠 首爾 (Day 5-6)&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p&gt;&lt;strong&gt;首爾市區飯店 [cite: 55]&lt;/strong&gt;&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p style="font-size:14px; color:#666;"&gt;建議區域：明洞或江南 [cite: 55]&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div id="section-transport" class="content-section"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;h3&gt;🚇 首爾地鐵 &amp; AREX [cite: 7, 64]&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;T-money卡&lt;/strong&gt;: ₩2,500卡費+充值, 全家共用 [cite: 65]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;成人車票&lt;/strong&gt;: 約 ₩1,250-₩1,800 [cite: 66]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;小孩優惠&lt;/strong&gt;: 6-12歲半價 [cite: 67]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;機場交通&lt;/strong&gt;: AREX (仁川-金浦) [cite: 14] [cite_start]/ AREX Express (市區-仁川) [cite: 52]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;h3&gt;🚗 濟州租車 (樂天) [cite: 7, 69]&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;車型&lt;/strong&gt;: Carnival 9座 + 兒童座椅 [cite: 71]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;必備證件&lt;/strong&gt;: 台灣駕照 + 國際駕照英譯本 [cite: 74]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;油料&lt;/strong&gt;: 回程前加滿 [cite: 73]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;&lt;strong&gt;導航&lt;/strong&gt;: 強烈建議使用 Naver Map 或 Kakao Map [cite: 80]。&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;h3&gt;✈️ 國內線飛行 [cite: 7, 70]&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p&gt;金浦 ↔ 濟州，飛行時間約 1小時15分 [cite: 75][cite_start]。推薦大韓航空或易斯達航空 [cite: 76]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;div id="section-food" class="content-section"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card" style="background: #f0f7ff; border: 1px solid #d0e3ff;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;h3 style="color: var(--accent-color); margin-top:0;"&gt;💰 總預算估算 (7人) [cite: 81]&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;p&gt;約 &lt;strong&gt;₩3,500,000&lt;/strong&gt; (~台幣 87,500) [cite: 82]。&lt;/p&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;ul style="font-size: 14px; color: #555; padding-left: 20px;"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;美食: ₩1,500,000 [cite: 82]&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;住宿: ₩1,200,000 [cite: 82]&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;機票(含AREX): ₩200,000 [cite: 82]&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;租車(含油料): ₩300,000 [cite: 82]&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;li&gt;門票景點: ₩300,000 [cite: 82]&lt;/li&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/ul&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;div class="card"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>[cite_start]&lt;h3&gt;😋 必吃美食清單 [cite: 58]&lt;/h3&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="time-tag" style="font-weight:normal"&gt;首爾&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;div class="event-info"&gt;&lt;p&gt;設半烤排骨湯 (₩15k), 橋村炸雞 (₩20k) [cite: 59]。&lt;/p&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="time-tag" style="font-weight:normal"&gt;濟州&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;div class="event-info"&gt;&lt;p&gt;黑豬肉 (₩25k), 海女鮑魚粥 (₩20k), 帶魚燉煮 (₩25k), 大閘蟹 (₩40k) [cite: 59, 60]。&lt;/p&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;div class="timeline-item"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>&lt;div class="time-tag" style="font-weight:normal"&gt;點心&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>[cite_start]&lt;div class="event-info"&gt;&lt;p&gt;Audrant 大蒜麵包, 倫敦貝果 [cite: 60]。&lt;/p&gt;&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/div&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;nav class="bottom-nav"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item" onclick="switchSection('prep')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;🎒&lt;/span&gt;行前準備</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item" onclick="switchSection('flight')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;✈️&lt;/span&gt;航班資訊</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item active" onclick="switchSection('itinerary')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;📅&lt;/span&gt;行程</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item" onclick="switchSection('stay')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;🏠&lt;/span&gt;住宿</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item" onclick="switchSection('transport')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;🚇&lt;/span&gt;交通</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;button class="nav-item" onclick="switchSection('food')"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>&lt;span class="nav-icon"&gt;💰&lt;/span&gt;預算</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/nav&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>// 取得按鈕元素</span></p>
-<p class="p1"><span class="s1">const topBtn = document.getElementById("backToTop");</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// 監聽滾動事件</span></p>
-<p class="p1"><span class="s1">window.onscroll = function() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// 當頁面下滑超過 300px 時顯示按鈕，否則隱藏</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (document.body.scrollTop &gt; 300 || document.documentElement.scrollTop &gt; 300) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>topBtn.classList.add("show");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>topBtn.classList.remove("show");</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1">};</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// 一鍵回到頂端函數</span></p>
-<p class="p1"><span class="s1">function scrollToTop() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>window.scrollTo({</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>top: 0,</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>behavior: 'smooth' // 平滑滾動效果</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>});</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">  </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// 切換底部主區塊</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function switchSection(sectionId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.content-section').forEach(s =&gt; s.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('section-' + sectionId).classList.add('active');</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.nav-item').forEach(b =&gt; b.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>event.currentTarget.classList.add('active');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>window.scrollTo(0, 0);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// 切換每日行程分頁</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>function switchDay(dayId) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.day-tab').forEach(t =&gt; t.style.display = 'none');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById('day-' + dayId).style.display = 'block';</span></p>
-<p class="p2"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.querySelectorAll('.day-chip').forEach(c =&gt; c.classList.remove('active'));</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>event.currentTarget.classList.add('active');</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1">&lt;/script&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+<header class="header-carousel-container">
+    <div class="carousel-slides">
+        <img src="https://picsum.photos/800/400?random=1" class="carousel-image" alt="Korea Image 1">
+        <img src="https://picsum.photos/800/400?random=2" class="carousel-image" alt="Korea Image 2">
+        <img src="https://picsum.photos/800/400?random=3" class="carousel-image" alt="Korea Image 3">
+    </div>
+    <div class="header-overlay-text">
+        <h1>🇰🇷 2026 韓國家庭旅行</h1>
+        <div class="subtitle">9月13日 - 9月19日 • 7位成員 (含長輩與小孩)</div>
+    </div>
+</header>
+
+<div id="section-prep" class="content-section">
+    
+    <div class="card">
+        <div class="checklist-title">📄 必備證件 (身分/交通)</div>
+        
+        <label class="checklist-item">
+            <input type="checkbox"> <span>護照 (效期需6個月以上)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>台灣駕照正本 (自駕組必帶)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>國際駕照英譯本 (自駕組必帶)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>Q-Code / K-ETA 截圖 (視當時規定)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>機票 & 住宿憑證 (手機儲存一份)</span>
+        </label>
+    </div>
+
+    <div class="card">
+        <div class="checklist-title">🎒 必帶清單 (生活/電力)</div>
+        
+        <label class="checklist-item">
+            <input type="checkbox"> <span>韓國轉接頭 (雙圓頭 Type C/F)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>行動電源 & 充電線</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>WOWPASS 卡 / T-money 卡</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>換好少量韓幣現金 (₩10萬起)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>輕便摺疊傘 或 雨衣</span>
+        </label>
+    </div>
+
+    <div class="card">
+        <div class="checklist-title">💊 長輩與小孩特別備品</div>
+        
+        <label class="checklist-item">
+            <input type="checkbox"> <span>長輩常備藥 (血壓/慢性病藥)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>小兒退燒藥 / 止瀉藥 / 感冒藥</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>小孩習慣的餐具 (韓國多為扁筷)</span>
+        </label>
+        <label class="checklist-item">
+            <input type="checkbox"> <span>OK 繃 / 簡單外傷藥膏</span>
+        </label>
+    </div>
+
+    <div class="card" style="background: #FFF9E6; border:none;">
+        <p style="font-size: 13px; color: #856404; margin: 0;">
+            💡 <strong>提示：</strong>本清單僅供參考，勾選狀態在重新整理網頁後會消失，建議出發當天做最後確認！
+        </p>
+    </div>
+  <div class="card" style="border-top: 4px solid var(--accent-color);">
+    <div class="checklist-title">✈️ 行前電子入境</div>
+    <p style="font-size: 13px; color: #666; margin-bottom: 12px;">建議於出發前 72 小時內完成：</p>
+    
+    <div class="btn-group">
+        <a href="https://www.k-eta.go.kr/" target="_blank" class="link-btn link-btn-primary">K-ETA 官方申請</a>
+        <a href="https://qcode.kdca.go.kr/" target="_blank" class="link-btn link-btn-primary">Q-Code 入境檢疫填寫</a>
+    </div>
+    <p style="font-size: 11px; color: #999; margin-top: 8px;">※ 申請完成後建議將 QR Code 截圖存於手機相簿。</p>
+</div>
+
+<div class="card">
+    <div class="checklist-title">📱 必載 App (交通/翻譯/消費)</div>
+    
+    <div class="app-box">
+        <p style="margin:0; font-size:14px;"><strong>Naver Map</strong> (韓國地圖最準)</p>
+        <div class="btn-group">
+            <a href="https://apps.apple.com/app/naver-map/id311867728" target="_blank" class="link-btn">iOS 下載</a>
+            <a href="https://play.google.com/store/apps/details?id=com.nhn.android.nmap" target="_blank" class="link-btn">Android 下載</a>
+        </div>
+    </div>
+
+    <div class="app-box">
+        <p style="margin:0; font-size:14px;"><strong>Papago</strong> (最強韓文翻譯/圖片翻譯)</p>
+        <div class="btn-group">
+            <a href="https://apps.apple.com/app/naver-papago-ai-translator/id1147874329" target="_blank" class="link-btn">iOS 下載</a>
+            <a href="https://play.google.com/store/apps/details?id=com.naver.labs.translator" target="_blank" class="link-btn">Android 下載</a>
+        </div>
+    </div>
+
+    <div class="app-box">
+        <p style="margin:0; font-size:14px;"><strong>WOWPASS</strong> (匯率查看/卡片餘額)</p>
+        <div class="btn-group">
+            <a href="https://apps.apple.com/app/wowpass/id1614532283" target="_blank" class="link-btn">iOS 下載</a>
+            <a href="https://play.google.com/store/apps/details?id=io.orangebottle.wowpass" target="_blank" class="link-btn">Android 下載</a>
+        </div>
+    </div>
+
+    <div class="app-box">
+        <p style="margin:0; font-size:14px;"><strong>Kakao T</strong> (韓國叫車首選)</p>
+        <div class="btn-group">
+            <a href="https://apps.apple.com/app/kakao-t/id981110467" target="_blank" class="link-btn">iOS 下載</a>
+            <a href="https://play.google.com/store/apps/details?id=com.kakao.taxi" target="_blank" class="link-btn">Android 下載</a>
+        </div>
+    </div>
+</div>
+</div>
+  
+<div id="section-flight" class="content-section">
+    
+    <h3 style="border-left: 5px solid var(--accent-color); padding-left: 10px; margin-top: 25px;">🛫 9/13 (週日) 去程：出發韓國</h3>
+    
+    <div class="card flight-card">
+        <div class="badge" style="background: #006241; color: white;">長榮航空 BR170 (2大1小)</div>
+        <div class="flight-route">
+            <span>TPE 桃園 T2</span>
+            <span class="plane-icon">✈️</span>
+            <span>ICN 仁川 T1</span>
+        </div>
+        <p><strong>時間：07:30 - 11:00</strong></p>
+    </div>
+
+    <div class="card flight-card" style="border-left-color: #5c2c91;">
+        <div class="badge" style="background: #184497; color: white;">中華航空 CI164 (4位大人)</div>
+        <div class="flight-route">
+            <span>KHH 高雄 I</span>
+            <span class="plane-icon">✈️</span>
+            <span>ICN 仁川 T2</span>
+        </div>
+        <p><strong>時間：07:05 - 11:00</strong></p>
+        <p style="font-size: 12px; color: #e74c3c;">※ 提醒：兩組分別在 T1 與 T2 抵達，需約定匯合地點。</p>
+    </div>
+
+    <h3 style="border-left: 5px solid #27ae60; padding-left: 10px; margin-top: 25px;">✈️ 國內線：首爾 ↔ 濟州</h3>
+    <div class="card">
+        <div class="badge">9/14 (週一) 前往濟州</div>
+        <div class="flight-route" style="font-size: 16px;">
+            <span>GMP 金浦</span> <span class="plane-icon">→</span> <span>CJU 濟州</span>
+        </div>
+        <p>航班：<strong>KE1341</strong> | 10:15 - 11:30</p>
+    </div>
+
+    <div class="card">
+        <div class="badge">9/17 (週四) 返回首爾</div>
+        <div class="flight-route" style="font-size: 16px;">
+            <span>CJU 濟州</span> <span class="plane-icon">→</span> <span>GMP 金浦</span>
+        </div>
+        <p>航班：<strong>KE1107</strong> | 12:45 - 14:00</p>
+    </div>
+
+    <h3 style="border-left: 5px solid var(--accent-color); padding-left: 10px; margin-top: 25px;">🛬 9/19 (週六) 回程：返台</h3>
+    
+    <div class="card flight-card">
+        <div class="badge" style="background: #006241; color: white;">長榮航空 BR169 (2大1小)</div>
+        <div class="flight-route">
+            <span>ICN 仁川 T1</span>
+            <span class="plane-icon">✈️</span>
+            <span>TPE 桃園 T2</span>
+        </div>
+        <p><strong>時間：12:00 - 13:35</strong></p>
+    </div>
+
+    <div class="card flight-card" style="border-left-color: #5c2c91;">
+        <div class="badge" style="background: #184497; color: white;">中華航空 CI165 (4位大人)</div>
+        <div class="flight-route">
+            <span>ICN 仁川 T2</span>
+            <span class="plane-icon">✈️</span>
+            <span>KHH 高雄 I</span>
+        </div>
+        <p><strong>時間：12:05 - 14:05</strong></p>
+    </div>
+</div>
+
+<div id="section-itinerary" class="content-section active">
+    <div class="day-selector">
+        <button class="day-chip active" onclick="switchDay('d1')">D1 首爾</button>
+        <button class="day-chip" onclick="switchDay('d2')">D2 飛濟州</button>
+        <button class="day-chip" onclick="switchDay('d3')">D3 濟州東</button>
+        <button class="day-chip" onclick="switchDay('d4')">D4 濟州南</button>
+        <button class="day-chip" onclick="switchDay('d5')">D5 回首爾</button>
+        <button class="day-chip" onclick="switchDay('d6')">D6 市區</button>
+        <button class="day-chip" onclick="switchDay('d7')">D7 返台</button>
+    </div>
+
+    <div id="day-d1" class="day-tab active">
+        <img src="https://picsum.photos/600/300?random=map1" class="day-map-image" alt="Day 1 Map">
+        
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">11:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>抵達仁川機場 (ICN) [cite: 4]</h4>
+                    [cite_start]<p>通關、換錢、購買 T-money 卡 (全家共用 ₩10,000) [cite: 14]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">12:40</div>
+                <div class="event-info">
+                    [cite_start]<h4>午餐：設半烤排骨湯魔谷店 [cite: 14]</h4>
+                    [cite_start]<p>豬肉湯飯、米腸湯、烤排骨。人均 ₩15,000 [cite: 14]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">14:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>首爾植物園散步 [cite: 15]</h4>
+                    [cite_start]<p>溫室、湖邊步道、孩子遊樂區 [cite: 15]。</p>
+                    [cite_start]<span class="badge">成人 ₩5,000 / 6歲免費 [cite: 15]</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">18:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>分流活動 [cite: 15]</h4>
+                    <p>A組(長輩)：回 Airbnb 休息。</p>
+                    [cite_start]<p>B組(年輕人+小孩)：金浦現代 Outlet 購物 [cite: 15]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">19:15</div>
+                <div class="event-info">
+                    [cite_start]<h4>宵夜：橋村炸雞 (馬谷店) [cite: 15]</h4>
+                    [cite_start]<p>全家共聚吃炸雞啤酒 (치맥) [cite: 15]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d2" class="day-tab" style="display:none">
+         <img src="Jeju.png" class="day-map-image" alt="Day 2 Map">
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">10:15</div>
+                <div class="event-info">
+                    [cite_start]<h4>飛往濟州島 [cite: 32]</h4>
+                    [cite_start]<p>金浦飛濟州 (如 KE1341)，約1小時15分 [cite: 32]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">11:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>樂天租車取車 [cite: 36]</h4>
+                    [cite_start]<p>車型：Carnival 9座 + 兒童座椅 [cite: 36]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">13:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>石頭文化公園 [cite: 37]</h4>
+                    [cite_start]<p>平坦步道，適合長輩與小孩，室內有空調 [cite: 37]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">15:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>東門市場 [cite: 37]</h4>
+                    [cite_start]<p>購買新鮮水果、炸物小吃、伴手禮 [cite: 37]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">18:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>晚餐：濟州黑豬肉一條街 [cite: 37]</h4>
+                    [cite_start]<p>烤黑豬肉，小菜無限享用。人均 ₩25,000 [cite: 37]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d3" class="day-tab" style="display:none">
+         <img src="Jeju.png" class="day-map-image" alt="Day 3 Map">
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">09:20</div>
+                <div class="event-info">
+                    [cite_start]<h4>萬丈窟 (UNESCO) [cite: 40]</h4>
+                    [cite_start]<p>平坦水泥路，室內涼爽適合全家 [cite: 40]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">10:40</div>
+                <div class="event-info">
+                    [cite_start]<h4>城山日出峰 [cite: 40]</h4>
+                    [cite_start]<p>山腳散步、幼童玩耍；年輕人可自行登山頂 [cite: 40]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">14:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>海女表演 [cite: 40]</h4>
+                    [cite_start]<p>城山山腳海邊免費表演 [cite: 40]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">16:40</div>
+                <div class="event-info">
+                    [cite_start]<h4>Aqua Planet Jeju 水族館 [cite: 41]</h4>
+                    [cite_start]<p>鯊魚隧道、海豚表演，小孩最愛 [cite: 41]。</p>
+                    [cite_start]<span class="badge">成人 ₩24,000 / 小孩 ₩18,000 [cite: 41]</span>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">19:35</div>
+                <div class="event-info">
+                    [cite_start]<h4>晚餐：帶魚燉煮 [cite: 41]</h4>
+                    [cite_start]<p>濟州市海邊餐廳，人均 ₩25,000 [cite: 41]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d4" class="day-tab" style="display:none">
+         <img src="Jeju.png" class="day-map-image" alt="Day 4 Map">
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">09:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>Osulloc 綠茶體驗 [cite: 44]</h4>
+                    [cite_start]<p>茶田散步、吃綠茶冰淇淋、買伴手禮 [cite: 44]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">10:20</div>
+                <div class="event-info">
+                    [cite_start]<h4>柱狀節理帶 [cite: 45]</h4>
+                    [cite_start]<p>觀賞六角形熔岩柱海景，走海岸棧道 [cite: 45]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">11:20</div>
+                <div class="event-info">
+                    [cite_start]<h4>正房瀑布 [cite: 45]</h4>
+                    [cite_start]<p>全韓國唯一直接入海的瀑布 [cite: 45]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">13:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>閒德海灘遊玩 [cite: 45]</h4>
+                    [cite_start]<p>玩沙、拍照、長輩休息 [cite: 45]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">14:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>Penguin 半潛艇體驗 [cite: 45]</h4>
+                    [cite_start]<p>約30分海底旅遊，看珊瑚魚群 (需預約) [cite: 45]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">16:00</div>
+                <div class="event-info">
+                    [cite_start]<h4>晚餐：大閘蟹大餐 [cite: 45]</h4>
+                    [cite_start]<p>蟹鍋、蒸蟹、海鮮套餐。人均 ₩40,000 [cite: 45]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d5" class="day-tab" style="display:none">
+         <img src="https://picsum.photos/600/300?random=map5" class="day-map-image" alt="Day 5 Map">
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">07:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>早餐：倫敦貝果博物館 (濟州店) [cite: 50]</h4>
+                    [cite_start]<p>貝果+咖啡，可打包在路上吃 [cite: 50]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">08:30</div>
+                <div class="event-info">
+                    [cite_start]<h4>前往濟州機場 [cite: 50]</h4>
+                    [cite_start]<p>辦理樂天還車，辦理國內線登機 [cite: 50]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">12:45</div>
+                <div class="event-info">
+                    [cite_start]<h4>飛回金浦機場 [cite: 50]</h4>
+                    [cite_start]<p>國內線班機 (如 KE1107) [cite: 50]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">下午</div>
+                <div class="event-info">
+                    [cite_start]<h4>入住首爾市區飯店 [cite: 55]</h4>
+                    [cite_start]<p>建議地點：明洞或江南 [cite: 55]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d6" class="day-tab" style="display:none">
+         <img src="https://picsum.photos/600/300?random=map6" class="day-map-image" alt="Day 6 Map">
+        <div class="card">
+            <div class="event-info" style="margin-bottom: 15px;">
+                [cite_start]<span class="badge" style="font-size: 14px; background: var(--primary-color); color: white;">今日主題：首爾市區精華遊 [cite: 51]</span>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">建議</div>
+                <div class="event-info">
+                    [cite_start]<h4>逛街購物 [cite: 54]</h4>
+                    [cite_start]<p>明洞或弘大商圈採買 [cite: 53]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">景點</div>
+                <div class="event-info">
+                    [cite_start]<h4>文化體驗 [cite: 54]</h4>
+                    [cite_start]<p>參觀景福宮、N首爾塔 [cite: 54]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">晚餐</div>
+                <div class="event-info">
+                    [cite_start]<h4>烤鰻魚晚餐 [cite: 54]</h4>
+                    [cite_start]<p>享受首爾美食夜 [cite: 54]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="day-d7" class="day-tab" style="display:none">
+         <img src="https://picsum.photos/600/300?random=map7" class="day-map-image" alt="Day 7 Map">
+        <div class="card">
+            <div class="timeline-item">
+                <div class="time-tag">上午</div>
+                <div class="event-info">
+                    [cite_start]<h4>前往仁川國際機場 [cite: 57]</h4>
+                    [cite_start]<p>搭乘 AREX EXPRESS (約43分) [cite: 57]。</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="time-tag">12:05</div>
+                <div class="event-info">
+                    [cite_start]<h4>飛機起飛回台灣 [cite: 57]</h4>
+                    [cite_start]<p>班次 BR261 或相似航班 [cite: 57]。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="section-stay" class="content-section">
+    <div class="card">
+        <h3 style="margin-top:0">🏠 首爾 (Day 1)</h3>
+        [cite_start]<p><strong>松亭站 Airbnb (송정역 에어비앤비) [cite: 10]</strong></p>
+        [cite_start]<p style="font-size:14px; color:#666;">地址：서울 강서구 공항대로 지하33 (空港洞29-5) [cite: 11]</p>
+        [cite_start]<span class="badge">靠近地鐵5號線 513站 [cite: 12]</span>
+        [cite_start]<span class="badge">11:00後可寄行李 [cite: 12]</span>
+    </div>
+    <div class="card">
+        <h3 style="margin-top:0">🏠 濟州 (Day 2-4)</h3>
+        [cite_start]<p><strong>濟州市飯店 [cite: 34]</strong></p>
+        [cite_start]<p style="font-size:14px; color:#666;">位置：濟州市三徒一洞 [cite: 34]</p>
+        [cite_start]<span class="badge">機場近 [cite: 34]</span>
+        [cite_start]<span class="badge">美食方便 [cite: 34]</span>
+    </div>
+    <div class="card">
+        <h3 style="margin-top:0">🏠 首爾 (Day 5-6)</h3>
+        [cite_start]<p><strong>首爾市區飯店 [cite: 55]</strong></p>
+        [cite_start]<p style="font-size:14px; color:#666;">建議區域：明洞或江南 [cite: 55]</p>
+    </div>
+</div>
+
+<div id="section-transport" class="content-section">
+    <div class="card">
+        [cite_start]<h3>🚇 首爾地鐵 & AREX [cite: 7, 64]</h3>
+        <ul>
+            [cite_start]<li><strong>T-money卡</strong>: ₩2,500卡費+充值, 全家共用 [cite: 65]。</li>
+            [cite_start]<li><strong>成人車票</strong>: 約 ₩1,250-₩1,800 [cite: 66]。</li>
+            [cite_start]<li><strong>小孩優惠</strong>: 6-12歲半價 [cite: 67]。</li>
+            [cite_start]<li><strong>機場交通</strong>: AREX (仁川-金浦) [cite: 14] [cite_start]/ AREX Express (市區-仁川) [cite: 52]。</li>
+        </ul>
+    </div>
+    <div class="card">
+        [cite_start]<h3>🚗 濟州租車 (樂天) [cite: 7, 69]</h3>
+        <ul>
+            [cite_start]<li><strong>車型</strong>: Carnival 9座 + 兒童座椅 [cite: 71]。</li>
+            [cite_start]<li><strong>必備證件</strong>: 台灣駕照 + 國際駕照英譯本 [cite: 74]。</li>
+            [cite_start]<li><strong>油料</strong>: 回程前加滿 [cite: 73]。</li>
+            [cite_start]<li><strong>導航</strong>: 強烈建議使用 Naver Map 或 Kakao Map [cite: 80]。</li>
+        </ul>
+    </div>
+    <div class="card">
+        [cite_start]<h3>✈️ 國內線飛行 [cite: 7, 70]</h3>
+        [cite_start]<p>金浦 ↔ 濟州，飛行時間約 1小時15分 [cite: 75][cite_start]。推薦大韓航空或易斯達航空 [cite: 76]。</p>
+    </div>
+</div>
+
+<div id="section-food" class="content-section">
+    <div class="card" style="background: #f0f7ff; border: 1px solid #d0e3ff;">
+        [cite_start]<h3 style="color: var(--accent-color); margin-top:0;">💰 總預算估算 (7人) [cite: 81]</h3>
+        [cite_start]<p>約 <strong>₩3,500,000</strong> (~台幣 87,500) [cite: 82]。</p>
+        <ul style="font-size: 14px; color: #555; padding-left: 20px;">
+            [cite_start]<li>美食: ₩1,500,000 [cite: 82]</li>
+            [cite_start]<li>住宿: ₩1,200,000 [cite: 82]</li>
+            [cite_start]<li>機票(含AREX): ₩200,000 [cite: 82]</li>
+            [cite_start]<li>租車(含油料): ₩300,000 [cite: 82]</li>
+            [cite_start]<li>門票景點: ₩300,000 [cite: 82]</li>
+        </ul>
+    </div>
+    <div class="card">
+        [cite_start]<h3>😋 必吃美食清單 [cite: 58]</h3>
+        <div class="timeline-item">
+            <div class="time-tag" style="font-weight:normal">首爾</div>
+            [cite_start]<div class="event-info"><p>設半烤排骨湯 (₩15k), 橋村炸雞 (₩20k) [cite: 59]。</p></div>
+        </div>
+        <div class="timeline-item">
+            <div class="time-tag" style="font-weight:normal">濟州</div>
+            [cite_start]<div class="event-info"><p>黑豬肉 (₩25k), 海女鮑魚粥 (₩20k), 帶魚燉煮 (₩25k), 大閘蟹 (₩40k) [cite: 59, 60]。</p></div>
+        </div>
+        <div class="timeline-item">
+            <div class="time-tag" style="font-weight:normal">點心</div>
+            [cite_start]<div class="event-info"><p>Audrant 大蒜麵包, 倫敦貝果 [cite: 60]。</p></div>
+        </div>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <button class="nav-item" onclick="switchSection('prep')">
+        <span class="nav-icon">🎒</span>行前準備
+    </button>
+    <button class="nav-item" onclick="switchSection('flight')">
+        <span class="nav-icon">✈️</span>航班資訊
+    </button>
+    <button class="nav-item active" onclick="switchSection('itinerary')">
+        <span class="nav-icon">📅</span>行程
+    </button>
+    <button class="nav-item" onclick="switchSection('stay')">
+        <span class="nav-icon">🏠</span>住宿
+    </button>
+    <button class="nav-item" onclick="switchSection('transport')">
+        <span class="nav-icon">🚇</span>交通
+    </button>
+    <button class="nav-item" onclick="switchSection('food')">
+        <span class="nav-icon">💰</span>預算
+    </button>
+</nav>
+
+<script>
+  // 取得按鈕元素
+const topBtn = document.getElementById("backToTop");
+
+// 監聽滾動事件
+window.onscroll = function() {
+    // 當頁面下滑超過 300px 時顯示按鈕，否則隱藏
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topBtn.classList.add("show");
+    } else {
+        topBtn.classList.remove("show");
+    }
+};
+
+// 一鍵回到頂端函數
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 平滑滾動效果
+    });
+}
+  
+    // 切換底部主區塊
+    function switchSection(sectionId) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.getElementById('section-' + sectionId).classList.add('active');
+        
+        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    // 切換每日行程分頁
+    function switchDay(dayId) {
+        document.querySelectorAll('.day-tab').forEach(t => t.style.display = 'none');
+        document.getElementById('day-' + dayId).style.display = 'block';
+        
+        document.querySelectorAll('.day-chip').forEach(c => c.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
 </body>
 </html>
