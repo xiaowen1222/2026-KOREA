@@ -342,9 +342,10 @@
 }
     </style>
 </head>
-
+  
+<body>
+  
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
 
 <nav class="bottom-nav">
     <button class="nav-item" onclick="switchSection('prep')">
@@ -366,19 +367,16 @@
         <span class="nav-icon">💰</span>預算
     </button>
 </nav>
-
-  
-<body>
  
 <header class="header-carousel-container">
     <div class="carousel-slides">
-        <img src="https://picsum.photos/800/400?random=1" class="carousel-image" alt="Korea Image 1">
-        <img src="https://picsum.photos/800/400?random=2" class="carousel-image" alt="Korea Image 2">
-        <img src="https://picsum.photos/800/400?random=3" class="carousel-image" alt="Korea Image 3">
+        <img src="https://picsum.photos/800/400?random=1" class="carousel-image" alt="Korea 1">
+        <img src="https://picsum.photos/800/400?random=2" class="carousel-image" alt="Korea 2">
+        <img src="https://picsum.photos/800/400?random=3" class="carousel-image" alt="Korea 3">
     </div>
     <div class="header-overlay-text">
-        <h1> 2026 🇰🇷 Seoul & Jeju</h1>
-        <div class="subtitle">9月13日 - 9月19日 • 7位成員 (6大1小)</div>
+        <h1>2026 🇰🇷 Seoul & Jeju</h1>
+        <div style="margin-top:10px; font-size:15px;">9月13日 - 9月19日 • 7位成員</div>
     </div>
 </header>
 
@@ -616,6 +614,7 @@
         <button class="day-chip" onclick="switchDay('d6')">D6 市區</button>
         <button class="day-chip" onclick="switchDay('d7')">D7 返台</button>
     </div>
+  
 
     <div id="day-d1" class="day-tab active">
         <img src="https://picsum.photos/600/300?random=map1" class="day-map-image" alt="Day 1 Map">
@@ -688,7 +687,7 @@
             <a href="https://map.naver.com/v5/search/교촌치킨+마곡역점" target="_blank" class="nav-btn">📍 Naver Map 導航</a>
         </div>
     </div>
-</div>
+</div></div>
 
     <div id="day-d2" class="day-tab" style="display:none">
          <img src="Jeju.png" class="day-map-image" alt="Day 2 Map">
