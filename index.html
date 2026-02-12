@@ -854,321 +854,315 @@
   <div style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">
     <h3 style="display: flex; align-items: center; gap: 8px;">Day2推薦清單</h3>
     
-    <div class="spot-filter-container" style="display: flex; gap: 8px; overflow-x: auto; padding: 10px 0;">
+    <div id="day2-section">
+    <div class="spot-filter-container">
         <button class="filter-btn active" onclick="filterSpots('all', this)">全部</button>
         <button class="filter-btn" onclick="filterSpots('market', this)">東門市場</button>
         <button class="filter-btn" onclick="filterSpots('airport', this)">機場市區</button>
-        <button class="filter-btn" onclick="filterSpots('pork', this)">黑豬肉推薦</button>
+        <button class="filter-btn" onclick="filterSpots('pork', this)">黑豬肉</button>
         <button class="filter-btn" onclick="filterSpots('stay', this)">民宿/舊左</button>
     </div>
 
     <div class="spot-list">
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 必買</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-01 | 美食 / 必買</div>
             <h4>阿部全麵包 Abebe Bakery</h4>
             <p>爆漿忌廉甜甜圈，必吃牛島花生口味。</p>
             <div class="spot-info">📞 0507-1414-0750</div>
             <a href="https://map.naver.com/v5/search/아베베베이커리" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-                <div class="spot-card market">
-            <div class="spot-tag">美食 / IG熱門</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-02 | 美食 / IG熱門</div>
             <h4>UMU 布丁 (東門店)</h4>
-            <p><strong>為何推薦：</strong> 不用跑老遠！東門店就在市場出口。使用海藻製成，口感極致輕盈。店門口是超紅的文青打卡地標，一次只接待一組客人。</p>
+            <p>不用跑老遠！東門店就在市場出口，使用海藻製成。</p>
             <div class="spot-info">📞 0507-1327-0064</div>
             <a href="https://map.naver.com/v5/search/우무+제주+관덕로" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 夜市</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-03 | 美食 / 夜市</div>
             <h4>東門夜市噴火豬肉捲</h4>
             <p>8號門附近，視覺效果滿分的噴火秀小吃。</p>
             <div class="spot-info">📞 064-752-3001</div>
             <a href="https://map.naver.com/v5/search/제주동문재래시장" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 湯麵</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-04 | 美食 / 湯麵</div>
             <h4>金福麵條 (市場店)</h4>
             <p>隱藏在市場裡的在地黑豬肉湯麵老店。</p>
             <div class="spot-info">📞 064-751-1155</div>
             <a href="https://map.naver.com/v5/search/동문시장김복국수" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 帶魚</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-05 | 美食 / 帶魚</div>
             <h4>顧客食堂 (고객식당)</h4>
             <p>《周三美食匯》推薦！東門市場最強燉帶魚。</p>
             <div class="spot-info">📞 064-727-3002</div>
             <a href="https://map.naver.com/v5/search/고객식당" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 甜點</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-06 | 美食 / 甜點</div>
             <h4>柑橘糖葫蘆</h4>
             <p>整顆濟州柑橘串在一起，現在最紅的散步甜食。</p>
             <div class="spot-info">📞 市場攤位</div>
             <a href="https://map.naver.com/v5/search/제주동문시장" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 炸物</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-07 | 美食 / 炸物</div>
             <h4>螃蟹起司可樂餅</h4>
             <p>東門市場排隊點心，外殼酥脆內餡濃郁。</p>
             <div class="spot-info">📞 010-3333-1452</div>
             <a href="https://map.naver.com/v5/search/동문재래시장게그라탕" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">美食 / 傳統</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-08 | 美食 / 傳統</div>
             <h4>光州食堂 (血腸湯飯)</h4>
             <p>傳統的血腸湯飯，在地老饕的早午餐選擇。</p>
             <div class="spot-info">📞 064-752-1651</div>
             <a href="https://map.naver.com/v5/search/광주식당" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card market">
-            <div class="spot-tag">伴手禮</div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-09 | 伴手禮</div>
             <h4>橘子紀念品店 (橘子帽)</h4>
             <p>買一頂橘子造型帽，拍照紀念感十足。</p>
             <div class="spot-info">📞 市場文創區</div>
             <a href="https://map.naver.com/v5/search/동문시장기념품" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
+        <div class="spot-card market" data-category="market">
+            <div class="spot-tag">D2-10 | 伴手禮 / 甜點</div>
+            <h4>濟州橘子 Q 餅 (진아떡집)</h4>
+            <p>東門市場排隊老店，現包的紅豆艾草年糕。</p>
+            <div class="spot-info">📞 064-752-1234</div>
+            <a href="https://map.naver.com/v5/search/진아떡집" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
 
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 打卡</div>
-            <h4>UMU 布丁 (우무)</h4>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-11 | 美食 / 打卡</div>
+            <h4>UMU 布丁 (總店)</h4>
             <p>必拍的小人標誌與滑順的海藻布丁。</p>
             <div class="spot-info">📞 0507-1327-0064</div>
             <a href="https://map.naver.com/v5/search/우무" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-      <div class="spot-card airport">
-            <div class="spot-tag">早餐 / 湯飯</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-12 | 早餐 / 湯飯</div>
             <h4>Eunhui-ne (銀熙家海鮮湯飯)</h4>
-            <p><strong>推薦：</strong> 濟州最出名的湯飯連鎖，口味濃厚。這間店有大型停車場，適合 7 人大家庭。</p>
+            <p>濟州最出名的湯飯連鎖，口味濃厚，大車好停。</p>
             <div class="spot-info">📞 064-726-5622</div>
             <a href="https://map.naver.com/v5/search/제주은희네해장국" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-
-        <div class="spot-card airport">
-            <div class="spot-tag">早餐 / 湯飯</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-13 | 早餐 / 湯飯</div>
             <h4>濟州大建名家 (Daegeonmyeongga)</h4>
-            <p><strong>推薦：</strong> 專賣黑豬肉湯飯，湯頭清甜不膩，非常有質感，離機場開車 5 分鐘。</p>
+            <p>專賣黑豬肉湯飯，湯頭清甜，離機場5分鐘。</p>
             <div class="spot-info">📞 064-711-6663</div>
             <a href="https://map.naver.com/v5/search/대건명가돼지국밥" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 定食</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-14 | 美食 / 定食</div>
             <h4>Gozzipdol Luck 石頭魚</h4>
             <p>超級澎湃的海女主題燉魚定食，小紅書大推。</p>
             <div class="spot-info">📞 064-722-1008</div>
             <a href="https://map.naver.com/v5/search/고집돌우럭+제주공항점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 湯麵</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-15 | 美食 / 湯麵</div>
             <h4>姊妹麵條 (자매국수)</h4>
             <p>濟州最強黑豬肉麵，Palisade 停車首選地。</p>
             <div class="spot-info">📞 064-746-2222</div>
             <a href="https://map.naver.com/v5/search/자매국수" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 飯捲</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-16 | 美食 / 飯捲</div>
             <h4>濟州金萬福 (總店)</h4>
             <p>經典鮑魚飯捲，適合取完車後帶著走。</p>
             <div class="spot-info">📞 064-759-8582</div>
             <a href="https://map.naver.com/v5/search/제주김만복" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 海鮮</div>
-            <h4>三姓穴海鮮湯 (三姓穴站)</h4>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-17 | 美食 / 海鮮</div>
+            <h4>三姓穴海鮮湯</h4>
             <p>活生生的巨量海鮮入鍋，視覺效果驚人。</p>
             <div class="spot-info">📞 064-745-3000</div>
             <a href="https://map.naver.com/v5/search/삼성혈해물탕" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 炸物</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-18 | 美食 / 炸物</div>
             <h4>第一製菓店 (蒜泥麵包)</h4>
             <p>老字號名店，炸蒜泥麵包在網路極紅。</p>
             <div class="spot-info">📞 064-753-1236</div>
             <a href="https://map.naver.com/v5/search/제일제과점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 牛肉</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-19 | 美食 / 牛肉</div>
             <h4>蓮洞本家 (Yeondong)</h4>
             <p>排骨湯與拌生牛肉，在地人強烈推薦。</p>
             <div class="spot-info">📞 064-747-9298</div>
             <a href="https://map.naver.com/v5/search/연동본가" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / 手捲</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-20 | 美食 / 手捲</div>
             <h4>多情手捲 (機場附近)</h4>
             <p>厚蛋捲與豐富內餡，機場外帶人氣王。</p>
             <div class="spot-info">📞 064-748-7771</div>
             <a href="https://map.naver.com/v5/search/다정김밥" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">購物 / 地下街</div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-21 | 購物 / 地下街</div>
             <h4>濟州中央地下商街</h4>
             <p>避暑避雨逛街好去處，平價服飾美妝齊全。</p>
             <div class="spot-info">📞 064-753-1576</div>
             <a href="https://map.naver.com/v5/search/제주중앙지하상가" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
+        <div class="spot-card airport" data-category="airport">
+            <div class="spot-tag">D2-22 | 美食 / IG熱門</div>
+            <h4>Dodu-dong 彩虹海岸公路</h4>
+            <p>機場後方，一整排彩虹石墩，經典打卡點。</p>
+            <div class="spot-info">📞 064-728-2114</div>
+            <a href="https://map.naver.com/v5/search/도두동무지개해안도로" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
 
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 頂級</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-23 | 黑豬肉 / 頂級</div>
             <h4>熟成到 (Sukseongdo)</h4>
-            <p>目前濟州島評價最高的黑豬肉，沒預約要等很久。</p>
+            <p>目前濟州島評價最高，需用 App 預約。</p>
             <div class="spot-info">📞 064-711-5213</div>
             <a href="https://map.naver.com/v5/search/숙성도+노형본점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 家庭</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-24 | 黑豬肉 / 家庭</div>
             <h4>黑豚家 (濟州本館)</h4>
-            <p>老牌大店，位置多且 Palisade 非常好停車。</p>
+            <p>老牌大店，位置多且 Palisade 好停車。</p>
             <div class="spot-info">📞 064-747-0088</div>
             <a href="https://map.naver.com/v5/search/흑돈가+제주본점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 明星店</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-25 | 黑豬肉 / 明星店</div>
             <h4>Donsadon (豚舍人)</h4>
-            <p>多位韓星打卡，專人幫烤，厚切豬肉超鮮美。</p>
+            <p>多位韓星打卡，專人幫烤，厚切鮮美。</p>
             <div class="spot-info">📞 064-746-8989</div>
             <a href="https://map.naver.com/v5/search/돈사돈" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 一條街</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-26 | 黑豬肉 / 一條街</div>
             <h4>菜板豚 (Dombe Pork)</h4>
             <p>米其林推薦，位於東門市場旁的必吃名店。</p>
             <div class="spot-info">📞 064-753-0008</div>
             <a href="https://map.naver.com/v5/search/돔베돈" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 高質感</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-27 | 黑豬肉 / 高質感</div>
             <h4>八月黑豬 (Pal-wol)</h4>
-            <p>現代風格烤肉店，油煙處理優秀，環境舒適。</p>
+            <p>現代風格烤肉店，油煙處理優秀。</p>
             <div class="spot-info">📞 0507-1341-8081</div>
             <a href="https://map.naver.com/v5/search/팔월흑돼지" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 特色炭火</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-28 | 黑豬肉 / 特色炭火</div>
             <h4>黑大將</h4>
-            <p>注重炭火香氣，肉質厚實且口感多汁。</p>
+            <p>注重炭火香氣，肉質厚實多汁。</p>
             <div class="spot-info">📞 064-748-0092</div>
             <a href="https://map.naver.com/v5/search/흑대장" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / CP值</div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-29 | 黑豬肉 / CP值</div>
             <h4>七豚家</h4>
-            <p>深受當地人喜愛，肉量十足，沾醬味道正宗。</p>
+            <p>在地人喜愛，肉量十足，沾醬正宗。</p>
             <div class="spot-info">📞 064-727-2850</div>
             <a href="https://map.naver.com/v5/search/칠돈가" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
+        <div class="spot-card pork" data-category="pork">
+            <div class="spot-tag">D2-30 | 黑豬肉 / 景觀</div>
+            <h4>海金剛 (Hae-geum-gang)</h4>
+            <p>看海吃黑豬肉，市區邊緣氛圍極佳。</p>
+            <div class="spot-info">📞 064-748-0092</div>
+            <a href="https://map.naver.com/v5/search/해금강" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
 
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 世界級</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-31 | 美食 / 世界級</div>
             <h4>倫敦貝果博物館 濟州</h4>
             <p>必吃葱乳酪貝果，建議 D3 一早去抽號碼牌。</p>
             <div class="spot-info">📞 010-4444-1234</div>
             <a href="https://map.naver.com/v5/search/런던베이글뮤지엄+제주" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 必吃</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-32 | 美食 / 必吃</div>
             <h4>明珍鮑魚</h4>
             <p>舊左邑傳奇，鮑魚石鍋飯與烤鮑魚是標配。</p>
             <div class="spot-info">📞 064-782-9944</div>
             <a href="https://map.naver.com/v5/search/명진전복" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">超市 / 補給</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-33 | 超市 / 補給</div>
             <h4>Hanaro Mart (舊左農協)</h4>
-            <p>民宿區最大超市，買肉買橘子買泡麵必去。</p>
+            <p>民宿區最大超市，買肉買橘子必去。</p>
             <div class="spot-info">📞 064-783-0011</div>
             <a href="https://map.naver.com/v5/search/구좌농협하나로마트" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 甜點</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-34 | 美食 / 甜點</div>
             <h4>Cafe Layered 濟州</h4>
-            <p>超美英式裝潢，各種口味的司康 (Scone) 是主角。</p>
+            <p>英式裝潢，各種口味的司康 (Scone) 是主角。</p>
             <div class="spot-info">📞 0507-1335-1234</div>
             <a href="https://map.naver.com/v5/search/카페레이어드+제주점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">景點 / 必拍</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-35 | 景點 / 必拍</div>
             <h4>史努比花園 Snoopy Garden</h4>
             <p>佔地極大，戶外區每個角落都超好拍。</p>
             <div class="spot-info">📞 064-903-1111</div>
             <a href="https://map.naver.com/v5/search/스누피가든" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 海膽</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-36 | 美食 / 海膽</div>
             <h4>Gommak (熊津)</h4>
-            <p>在地人激推的海鮮麵與海膽麵，就在公路旁。</p>
+            <p>在地人激推的海鮮麵與海膽麵。</p>
             <div class="spot-info">📞 064-727-5111</div>
             <a href="https://map.naver.com/v5/search/곰막식당" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 漢堡</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-37 | 美食 / 漢堡</div>
             <h4>Mooger Burger</h4>
-            <p>特色菠菜與胡蘿蔔麵包，海景配漢堡超爽。</p>
+            <p>特色菠菜麵包，海景配漢堡超爽。</p>
             <div class="spot-info">📞 064-783-0015</div>
             <a href="https://map.naver.com/v5/search/무거버거" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 刀削麵</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-38 | 美食 / 刀削麵</div>
             <h4>平代里海螺刀削麵</h4>
-            <p>湯頭充滿大海鮮甜，海螺肉質極度Q彈。</p>
+            <p>湯頭充滿大海鮮甜，肉質極度Q彈。</p>
             <div class="spot-info">📞 064-782-9990</div>
             <a href="https://map.naver.com/v5/search/평대리성게국수" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">咖啡 / 海景</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-39 | 咖啡 / 海景</div>
             <h4>Delmoondo (咸德店)</h4>
-            <p>蓋在沙灘上的傳奇咖啡廳，景色是濟州前三名。</p>
+            <p>蓋在沙灘上的傳奇咖啡廳，景色濟州前三。</p>
             <div class="spot-info">📞 064-702-0007</div>
             <a href="https://map.naver.com/v5/search/델문도" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 炸雞</div>
-            <h4>舊左炸雞</h4>
-            <p>適合外帶回民宿配燒酒的在地平價炸雞。</p>
-            <div class="spot-info">📞 064-782-9292</div>
-            <a href="https://map.naver.com/v5/search/구좌치킨" target="_blank" class="nav-btn-sm">Naver Map</a>
-        </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">購物 / 超市</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-40 | 購物 / 超市</div>
             <h4>樂天超市 (Lotte Mart)</h4>
-            <p>大型購物商場，想買零食伴手禮箱購就來這。</p>
+            <p>大型商場，想買零食伴手禮箱購就來這。</p>
             <div class="spot-info">📞 064-798-2500</div>
             <a href="https://map.naver.com/v5/search/롯데마트+제주점" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card airport">
-            <div class="spot-tag">美食 / IG熱門</div>
-            <h4>Dodu-dong 彩虹海岸公路</h4>
-            <p>機場後方，一整排彩虹石墩，是濟州島最經典的開車打卡點。</p>
-            <div class="spot-info">📞 064-728-2114</div>
-            <a href="https://map.naver.com/v5/search/도두동무지개해안도로" target="_blank" class="nav-btn-sm">Naver Map</a>
-        </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">咖啡 / 建築</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-41 | 咖啡 / 建築</div>
             <h4>Inislow (이니스플로우)</h4>
-            <p>舊左邑最新開幕！極簡清水模建築，空間超大，7人座大車超好停車。</p>
+            <p>舊左最新！極簡清水模，大車超好停。</p>
             <div class="spot-info">📞 0507-1365-1234</div>
             <a href="https://map.naver.com/v5/search/이니스플로우" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
-        <div class="spot-card pork">
-            <div class="spot-tag">黑豬肉 / 景觀</div>
-            <h4>海金剛 (Hae-geum-gang)</h4>
-            <p>可以看著海景吃黑豬肉，雖然在市區邊緣，但氛圍極佳。</p>
-            <div class="spot-info">📞 064-748-0092</div>
-            <a href="https://map.naver.com/v5/search/해금강" target="_blank" class="nav-btn-sm">Naver Map</a>
-        </div>
-        <div class="spot-card market">
-            <div class="spot-tag">伴手禮 / 甜點</div>
-            <h4>濟州橘子 Q 餅 (Jeju Omegi)</h4>
-            <p>東門市場排隊老店，現包的紅豆艾草年糕，口感非常扎實。</p>
-            <div class="spot-info">📞 064-752-1234</div>
-            <a href="https://map.naver.com/v5/search/진아떡집" target="_blank" class="nav-btn-sm">Naver Map</a>
-        </div>
-        <div class="spot-card stay">
-            <div class="spot-tag">美食 / 景觀</div>
+        <div class="spot-card stay" data-category="stay">
+            <div class="spot-tag">D2-42 | 美食 / 景觀</div>
             <h4>One and Only (月汀里分店)</h4>
-            <p>雖然本店在南方，但月汀里的分店海景無敵，適合全家喝下午茶。</p>
+            <p>月汀里海景無敵，適合全家喝下午茶。</p>
             <div class="spot-info">📞 064-794-8800</div>
             <a href="https://map.naver.com/v5/search/원앤온리" target="_blank" class="nav-btn-sm">Naver Map</a>
         </div>
     </div>
+</div>
 </div>
 </div>
 
@@ -1178,16 +1172,32 @@
     
     <div class="card">
         <div class="timeline-item" style="border-left: 3px solid #4caf50;">
-            <div class="time-tag"></div>
-            <div class="event-info">
-                <h4>第一站：오드랑베이커리 (Audant Bakery)</h4>
-                <p><strong>必吃任務：</strong> 採買「大蒜麵包」。這家是濟州島大蒜麵包的最高標竿，醬汁濕潤濃厚，全家在路上就能分著吃！</p>
-                <p>店門口有 3-4 個免費車位。若客滿，請停在對面「咸德海濱公共停車場」。
-                <br>公共停車場通常免費或支援海外信用卡。</p>
-                <div class="spot-info">📞 064-784-5404</div>
-                <a href="https://map.naver.com/v5/search/오드랑베이커리" target="_blank" class="nav-btn-sm">📍 導航至Audant Bakery</a>
-            </div>
+    <div class="time-tag"></div>
+    <div class="event-info">
+        <h4>第一站：오드랑베이커리 (Audant Bakery)</h4>
+        <p><strong>🕒 營業時間：</strong> 07:00 - 22:00 (每天)</p>
+        <p><strong>必吃任務：</strong> 採買「大蒜麵包」。這家是濟州島大蒜麵包的最高標竿，醬汁濕潤濃厚，全家在路上就能分著吃！</p>
+        <p><strong>停車攻略：</strong> 店門口有 3-4 個免費車位。若客滿，請停在對面「咸德海濱公共停車場」。</p>
+        <div class="spot-info">📞 064-784-5404</div>
+        <a href="https://map.naver.com/v5/search/오드랑베이커리" target="_blank" class="nav-btn-sm">📍 導航至Audant Bakery</a>
+    </div>
+</div>
+
+<div class="timeline-item" style="border-left: 3px solid #ff9800;">
+    <div class="time-tag"></div>
+    <div class="event-info">
+        <h4>第二站：런던 베이글 뮤지엄 (London Bagel Museum)</h4>
+        <p><strong>🕒 營業時間：</strong> 08:00 - 18:00 (售完會提前打烊)</p>
+        <p><strong>必吃任務：</strong> 濟州島最狂排隊店！推薦「蔥貝果」與「磚塊貝果」。裝潢非常有歐洲感，建議外帶至海邊野餐。</p>
+        <p><strong>⚠️ 停車攻略：</strong> 
+        店門口禁止停車。<strong>建議由副駕先下車領取號碼牌</strong>，司機導航至專屬停車場「공백 주차장」(Gongbeak Parking)，步行約 5 分鐘抵達。</p>
+        <div class="spot-info">📞 064-784-0015</div>
+        <div style="display: flex; gap: 8px;">
+            <a href="https://map.naver.com/v5/search/런던베이글뮤지엄+제주" target="_blank" class="nav-btn-sm">📍 導航至倫敦貝果</a>
+            <a href="https://map.naver.com/v5/search/공백+주차장" target="_blank" class="nav-btn-sm" style="background-color: #666;">🅿️ 導航至專用停車場</a>
         </div>
+    </div>
+</div>
 
         <div class="timeline-item">
             <div class="time-tag">09:30</div>
@@ -1272,7 +1282,7 @@
         <div class="timeline-item">
             <div class="time-tag">13:30</div>
             <div class="event-info">
-                <h4>第三站：城山日出峰 / 海女表演</h4>
+                <h4>城山日出峰 / 海女表演</h4>
                 <p><strong>14:00 實境表演：</strong>抵達後，從售票口左側「免費步道」向下走至海岸邊。佔位等待 14:00 的一天一場表演。</p>
                 <p><strong>活動建議：</strong>看完表演後14:20，體力組可原路折返挑戰登頂（需購票），長輩組可在山腳下綠地拍照。</p>
                 <p><strong>停車參考：</strong> 公有大停車場。
@@ -1299,7 +1309,7 @@
         <div class="timeline-item">
             <div class="time-tag">16:30</div>
             <div class="event-info">
-                <h4>第五站：萬丈窟 (最後入場 17:00)</h4>
+                <h4>萬丈窟 (最後入場 17:00)</h4>
                 <p><strong>避暑首選：</strong> 探索天然的熔岩隧道，洞內全年維持在 11-15 度左右，建議長輩準備薄外套。</p>
                 <p><strong>注意：</strong> 17:00 停止售票。如果從 Orrrn 咖啡廳出發，路程約需30分鐘，請務必準時。</p>
                 <p><strong>停車參考：</strong> 超大型公有<strong>免費停車場</strong>
@@ -1321,7 +1331,380 @@
             </div>
         </div>
     </div>
+    <div style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">
+    <h3 style="display: flex; align-items: center; gap: 8px;">Day3推薦清單</h3>
+    
+    <div id="day3-section">
+    <div class="spot-filter-container" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 15px;">
+        <button class="filter-btn active" onclick="filterSpots('all', this)">全部</button>
+        <button class="filter-btn" onclick="filterSpots('eat', this)">正餐美食</button>
+        <button class="filter-btn" onclick="filterSpots('cafe', this)">景觀咖啡</button>
+        <button class="filter-btn" onclick="filterSpots('buy', this)">必買伴手</button>
+    </div>
+
+    <div class="spot-grid">
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-01 | 帶魚套餐 / 停車易</div>
+            <h4>海松帶魚 (해송갈치)</h4>
+            <p>主打無骨帶魚與豐富側菜，門口空地大，大車停車超輕鬆。</p>
+            <div class="spot-info">📞 064-783-4504</div>
+            <a href="https://map.naver.com/v5/search/해송갈치+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-02 | 海鮮拉麵 / 人氣名店</div>
+            <h4>京美家 (경미네집)</h4>
+            <p>日出峰必吃名店，放了滿滿章魚與海味，湯頭鮮甜到不行。</p>
+            <div class="spot-info">📞 064-782-2671</div>
+            <a href="https://map.naver.com/v5/search/경미네집" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-03 | 現撈海鮮 / 海景小屋</div>
+            <h4>白旗海女之屋 (백기해녀의집)</h4>
+            <p>海女親自捕撈的海味，就坐在海岸邊吹風吃刺身，非常道地。</p>
+            <div class="spot-info">📞 064-782-0672</div>
+            <a href="https://map.naver.com/v5/search/백기해녀의집" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-04 | 海膽麵 / 離水族館近</div>
+            <h4>涉地海女之屋 (섭지해녀의집)</h4>
+            <p>海膽愛好者首選，停車場巨大，逛完涉地可支水族館後剛好來吃。</p>
+            <div class="spot-info">📞 064-782-0672</div>
+            <a href="https://map.naver.com/v5/search/섭지해녀의집" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-05 | 鮑魚粥 / 第一名推薦</div>
+            <h4>始興海女之屋 (시흥해녀의집)</h4>
+            <p>在地人認證全島前幾名的鮑魚粥，味道深邃濃厚，值得特地開車來。</p>
+            <div class="spot-info">📞 064-782-9230</div>
+            <a href="https://map.naver.com/v5/search/시흥해녀의집" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-06 | 鮑魚石鍋 / 必吃排隊</div>
+            <h4>明珍鮑魚 (명진전복)</h4>
+            <p>超人氣鮑魚釜飯，熱氣騰騰拌入奶油香氣，鍋底的鍋巴是一絕。</p>
+            <div class="spot-info">📞 064-782-9920</div>
+            <a href="https://map.naver.com/v5/search/명진전복" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-07 | 聖子麵 / Palisade友善</div>
+            <h4>곰막 (Gommak麵店)</h4>
+            <p>生魚片拌麵與海膽麵口味大眾化，超大停車場適合新手駕駛。</p>
+            <div class="spot-info">📞 064-727-5111</div>
+            <a href="https://map.naver.com/v5/search/곰막" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-08 | 燉排骨 / 日出峰下</div>
+            <h4>真味食堂 (성산진미식당)</h4>
+            <p>辣中帶甜的燉排骨海鮮鍋，多人聚餐分食最熱鬧，份量很足。</p>
+            <div class="spot-info">📞 064-783-2280</div>
+            <a href="https://map.naver.com/v5/search/성산진미식당" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-09 | 章魚拌麵 / 特色美食</div>
+            <h4>소금바치순이네</h4>
+            <p>非常有名的「辣味章魚麵線」，口感酸辣過癮，是網美拍照常客。</p>
+            <div class="spot-info">📞 064-784-1230</div>
+            <a href="https://map.naver.com/v5/search/소금바치순이네" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-10 | 黑豬肉 / 炭火燒烤</div>
+            <h4>福者小姐 (복자씨연탄구이)</h4>
+            <p>看著海景吃炭烤黑豬肉，雖然要排隊但肉質肥美，氣氛超好。</p>
+            <div class="spot-info">📞 064-782-7330</div>
+            <a href="https://map.naver.com/v5/search/복자씨연탄구이" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-11 | 肉麵 / 濟州在地</div>
+            <h4>花加藍 (꽃가람)</h4>
+            <p>清淡的白湯豬肉麵，長輩小孩接受度都高，適合簡單吃一餐。</p>
+            <div class="spot-info">📞 064-783-3353</div>
+            <a href="https://map.naver.com/v5/search/꽃가람" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-12 | 紅燒帶魚 / 早上限定</div>
+            <h4>萬拿食堂 (맛나식당)</h4>
+            <p>CP值天花板！甜辣口味帶魚超下飯，但要有排隊到地老天荒的覺悟。</p>
+            <div class="spot-info">📞 064-782-4771</div>
+            <a href="https://map.naver.com/v5/search/맛나식당" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-13 | 海鮮湯 / 豐富料多</div>
+            <h4>漂流食客 (떠돌이식객)</h4>
+            <p>菜單選擇豐富多元，海鮮麵、飯捲都有，適合挑嘴的團體出遊。</p>
+            <div class="spot-info">📞 064-782-0505</div>
+            <a href="https://map.naver.com/v5/search/떠돌이식객" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-14 | 解酒湯 / 全家皆宜</div>
+            <h4>達萊解酒湯 (달래해장)</h4>
+            <p>清甜的牛肉湯底或是重口味辣湯，早起想暖胃來這就對了。</p>
+            <div class="spot-info">📞 0507-1358-1234</div>
+            <a href="https://map.naver.com/v5/search/달래해장+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-15 | 石鯛生魚片 / 高級</div>
+            <h4>城山花遊 (성산꽃나들이)</h4>
+            <p>想吃高級活魚刺身來這裡，石鯛、比目魚非常鮮甜，環境整潔。</p>
+            <div class="spot-info">📞 064-784-6363</div>
+            <a href="https://map.naver.com/v5/search/성산꽃나들이" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-16 | 章魚料理 / 舊左</div>
+            <h4>舊左章魚 (돌문어볶음)</h4>
+            <p>舊左地區名產，特調醬汁炒Q彈章魚，每一口都是海的味道。</p>
+            <div class="spot-info">📞 064-782-0005</div>
+            <a href="https://map.naver.com/v5/search/돌문어볶음+구좌" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-17 | 定食 / 在地老店</div>
+            <h4>加時食堂 (가시식당)</h4>
+            <p>最經典的濟州家常定食，炒豬肉、海帶湯，好吃又便宜。</p>
+            <div class="spot-info">📞 064-787-1035</div>
+            <a href="https://map.naver.com/v5/search/가시식당" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-18 | 夫婦生魚片 / CP值</div>
+            <h4>夫婦生魚片 (부부횟집)</h4>
+            <p>平價大份量的生魚片拼盤，想大口吃海鮮又不傷錢包的好去處。</p>
+            <div class="spot-info">📞 064-782-8322</div>
+            <a href="https://map.naver.com/v5/search/부부횟집+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-19 | 去骨帶魚 / 晚餐首選</div>
+            <h4>宮書體 (궁서체)</h4>
+            <p>懶人福音！整條帶魚都去好骨了，只管吃肉就好，環境極具現代感。</p>
+            <div class="spot-info">📞 0507-1431-1310</div>
+            <a href="https://map.naver.com/v5/search/궁서체+제주탑동본점" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card eat" data-category="eat">
+            <div class="spot-tag">D3-20 | 蕎麥麵 / 舊左特產</div>
+            <h4>漢拿山蕎麥 (한라산아래첫마을)</h4>
+            <p>清新優雅的蕎麥麵店，擺盤極美，口感細緻，環境像藝廊。</p>
+            <div class="spot-info">📞 064-782-5556</div>
+            <a href="https://map.naver.com/v5/search/한라산아래첫마을+표선" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-21 | 建築美學 / 海景</div>
+            <h4>오른 (Orrrn)</h4>
+            <p>現代灰泥風設計，大片落地窗正對海邊步道，拍照零死角。</p>
+            <div class="spot-info">📞 0507-1402-9992</div>
+            <a href="https://map.naver.com/v5/search/오른+카페" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-22 | 咸德沙灘 / 必去</div>
+            <h4>Delmoondo (델문도)</h4>
+            <p>就在沙灘上的咖啡廳，像在海中央喝咖啡，晚上氣氛也很棒。</p>
+            <div class="spot-info">📞 064-702-0007</div>
+            <a href="https://map.naver.com/v5/search/델문도" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-23 | 藝廊風 / BTS相關</div>
+            <h4>공백 (Gongbeak)</h4>
+            <p>SUGA親哥哥開的店，工業廢墟改建，是結合藝術展覽的超大空間。</p>
+            <div class="spot-info">📞 064-783-0015</div>
+            <a href="https://map.naver.com/v5/search/공백+제주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-24 | 倫敦貝果 / 超級人氣</div>
+            <h4>London Bagel Museum</h4>
+            <p>濟州最狂排隊王，貝果口感極Q，強烈建議提早線上預約免得敗興。</p>
+            <div class="spot-info">📞 064-784-0015</div>
+            <a href="https://map.naver.com/v5/search/런던베이글뮤지엄+제주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-25 | 司康名店 / 歐風</div>
+            <h4>Layered (레이어드)</h4>
+            <p>跟倫敦貝果就在旁邊，英式復古風裝潢，各式司康甜點看到眼花。</p>
+            <div class="spot-info">📞 0507-1358-0015</div>
+            <a href="https://map.naver.com/v5/search/레이어드+제주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-26 | 超寬廣海景 / 甜點</div>
+            <h4>西歸浦人貝果 (서귀피안)</h4>
+            <p>空間大到像體育館，全景落地窗直視海平面，停車極度方便。</p>
+            <div class="spot-info">📞 0507-1365-1234</div>
+            <a href="https://map.naver.com/v5/search/서귀피안베이커리" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-27 | 工業風 / 棕櫚樹</div>
+            <h4>Costeno (꼬스뗀뇨)</h4>
+            <p>灰白色調質感爆棚，棕櫚樹圍繞很有渡假感，鹽奶油咖啡必喝。</p>
+            <div class="spot-info">📞 0507-1498-8888</div>
+            <a href="https://map.naver.com/v5/search/꼬스뗀뇨" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-28 | 花海農場 / 適合全家</div>
+            <h4>波倫農場 (보롬왓)</h4>
+            <p>四季都有不同花海，適合帶小孩看花跑跳，咖啡廳採光極佳。</p>
+            <div class="spot-info">📞 010-7361-2345</div>
+            <a href="https://map.naver.com/v5/search/보롬왓" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-29 | 甜甜圈名店 / 必買</div>
+            <h4>多娜潤 (도너츠윤)</h4>
+            <p>濟州橘子口味糯米甜甜圈，口感Q韌不油膩，下午茶絕配。</p>
+            <div class="spot-info">📞 0507-1339-1234</div>
+            <a href="https://map.naver.com/v5/search/도너츠윤+제주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-30 | 漢堡與咖啡 / 海濱</div>
+            <h4>On The Stone (온더스톤)</h4>
+            <p>漢堡肉排厚實多汁，二樓海景第一排看夕陽非常浪漫。</p>
+            <div class="spot-info">📞 0507-1473-1234</div>
+            <a href="https://map.naver.com/v5/search/온더스톤+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-31 | 森林系 / 萬丈窟旁</div>
+            <h4>安多爾 (Andor)</h4>
+            <p>隱身在森林裡的純白咖啡廳，有一棵必拍的網美樹，氛圍靜謐。</p>
+            <div class="spot-info">📞 0507-1491-0315</div>
+            <a href="https://map.naver.com/v5/search/안도르" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-32 | 海景咖啡 / 靜謐</div>
+            <h4>想念濟州 (그리울땐제주)</h4>
+            <p>隱藏版的海景小店，人潮較少，適合想安靜看海發呆的人。</p>
+            <div class="spot-info">📞 0507-1400-1234</div>
+            <a href="https://map.naver.com/v5/search/그리울땐제주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-33 | 簡約風 / 好拍</div>
+            <h4>Landing (랜딩커피)</h4>
+            <p>以純白與藍天為背景，玻璃窗反射海景超級美，非常適合拍人像。</p>
+            <div class="spot-info">📞 0507-1311-1234</div>
+            <a href="https://map.naver.com/v5/search/랜딩커피" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-34 | 純白極簡 / 城山</div>
+            <h4>Blanc Note (블랑노트)</h4>
+            <p>隱藏在城山巷弄的簡約美學咖啡，店內擺設很有質感，安靜舒適。</p>
+            <div class="spot-info">📞 0507-1333-8888</div>
+            <a href="https://map.naver.com/v5/search/블랑노트" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card cafe" data-category="cafe">
+            <div class="spot-tag">D3-35 | 海景落地窗 / 必拍</div>
+            <h4>Wemi Coffee (위미理)</h4>
+            <p>超大片的弧形落地窗正對漁港海景，隨便拍都是明信片風格。</p>
+            <div class="spot-info">📞 0507-1355-6666</div>
+            <a href="https://map.naver.com/v5/search/위미커피" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-36 | 大蒜麵包 / 全島最強</div>
+            <h4>奧德朗 (오드랑베이커리)</h4>
+            <p>招牌大蒜瑪瑙麵包，蒜香濃郁到停車場都聞得到，每人都是三條起跳。</p>
+            <div class="spot-info">📞 064-784-5404</div>
+            <a href="https://map.naver.com/v5/search/오드랑베이커리" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-37 | 大創 / 限定小物</div>
+            <h4>Daiso (城山店)</h4>
+            <p>濟州限定海女、石頭爺爺商品區，價格便宜，適合大量買小禮物。</p>
+            <div class="spot-info">📞 064-782-6016</div>
+            <a href="https://map.naver.com/v5/search/다이소+제주성산점" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-38 | 在地超市 / 補給首選</div>
+            <h4>Hanaro Mart (城山)</h4>
+            <p>城山地區生活中心，想買濟州橘子、在地米酒或是海鮮乾貨來這最便宜。</p>
+            <div class="spot-info">📞 064-782-7853</div>
+            <a href="https://map.naver.com/v5/search/성산포농협하나로마트" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-39 | 文創選物 / 紀念品</div>
+            <h4>濟州小物館 (제주소품관)</h4>
+            <p>網羅全島設計師的文創小物，從蠟燭到磁鐵都精緻可愛。</p>
+            <div class="spot-info">📞 064-784-1234</div>
+            <a href="https://map.naver.com/v5/search/제주소품관+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-40 | 橘子週邊 / 齊全</div>
+            <h4>橘橘商店 (귤귤스토어)</h4>
+            <p>全店都是可愛的橘色調！從帽子到襪子全是橘子主題，大人小孩都瘋掉。</p>
+            <div class="spot-info">📞 0507-1333-5678</div>
+            <a href="https://map.naver.com/v5/search/귤귤스토어+성산" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-41 | 海女雞蛋糕 / 特色</div>
+            <h4>海女麵包 (해녀빵)</h4>
+            <p>可愛的海女造型雞蛋糕，裡面包著紅豆或橘子餡，熱熱吃很美味。</p>
+            <div class="spot-info">📞 064-782-1234</div>
+            <a href="https://map.naver.com/v5/search/성산해녀빵" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-42 | 爺爺燒 (하루방만쥬)</div>
+            <h4>爺爺造型燒</h4>
+            <p>日出峰入口處排隊小吃，小巧好拍，是經典的濟州觀光點心。</p>
+            <div class="spot-info">📞 無</div>
+            <a href="https://map.naver.com/v5/search/성산일출봉+하루방만쥬" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-43 | 在地釀造 / 精釀啤酒</div>
+            <h4>濟州啤酒工廠</h4>
+            <p>想喝最新鮮的濟州艾爾啤酒就來這，工廠直營口感最純粹。</p>
+            <div class="spot-info">📞 064-798-9876</div>
+            <a href="https://map.naver.com/v5/search/제주맥주" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-44 | 寵物禮物 / 毛孩</div>
+            <h4>狗狗商店 (멍멍스토어)</h4>
+            <p>幫家裡毛小孩買紀念品首選，有石頭爺爺造型的寵物玩具跟零食。</p>
+            <div class="spot-info">📞 0507-1344-9999</div>
+            <a href="https://map.naver.com/v5/search/멍멍스토어" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+
+        <div class="spot-card buy" data-category="buy">
+            <div class="spot-tag">D3-45 | 橘子果凍 / 禮盒</div>
+            <h4>Jeju Tangor (제주탐나오)</h4>
+            <p>質感禮盒專賣店，主打橘子果凍與濃縮果汁，包裝精美適合送禮。</p>
+            <div class="spot-info">📞 064-711-1234</div>
+            <a href="https://map.naver.com/v5/search/제주탐나오" target="_blank" class="nav-btn-sm">Naver Map</a>
+        </div>
+    </div>
 </div>
+</div></div>
 
     <div id="day-d4" class="day-tab" style="display:none">
          <img src="Jeju.png" class="day-map-image" alt="Day 4 Map">
@@ -1610,23 +1993,27 @@ function switchDay(dayId) {
     });
 }
     // 必吃必買篩選
-function filterSpots(category, btn) {
-    // 1. 切換按鈕 active 樣式
-    const buttons = document.querySelectorAll('.filter-btn');
+    function filterSpots(category, btn) {
+    // 1. 找到當前按鈕所在的區塊容器 (向上找最近的父層)
+    const section = btn.closest('[id$="-section"]') || btn.parentElement.parentElement;
+    
+    // 2. 找到該區塊內所有的卡片與按鈕
+    const cards = section.querySelectorAll('.spot-card');
+    const buttons = btn.parentElement.querySelectorAll('.filter-btn');
+    
+    // 3. 更新按鈕樣式
     buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
-    // 2. 切換卡片顯示
-    const cards = document.querySelectorAll('.spot-card');
+    // 4. 執行篩選
     cards.forEach(card => {
-        if (category === 'all') {
-            card.style.display = 'block';
+        // 抓取 data-category 屬性
+        const itemCat = card.getAttribute('data-category');
+        // 如果是 'all' 或 分類相符就顯示，否則隱藏
+        if (category === 'all' || itemCat === category) {
+            card.style.display = "block";
         } else {
-            if (card.classList.contains(category)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
+            card.style.display = "none";
         }
     });
 }
