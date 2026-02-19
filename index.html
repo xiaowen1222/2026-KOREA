@@ -684,13 +684,22 @@
 <div class="card">
     <div class="timeline-item">
         <div class="time-tag">11:00</div>
-        <div class="event-info">
-            <h4>抵達仁川機場 (各自辦理)</h4>
-            <p>1. 桃園組(T1)/高雄組(T2)各自完成通關與換錢。</p>
-            <p>2. <strong>辦理 SeS 自動通關</strong> (不過未滿17歲不能辦理，需走人工)。</p>
-            <p>3. 自行搭乘 AREX 機場快線(普通車) 前往金浦機場站。</p>
-            <span class="badge" style="background:#fff3cd; color:#856404;">💡 辦完後在群組報進度，直接去Airbnb集合</span>
-        </div>
+<div class="event-info">
+    <h4>抵達仁川機場 (各自辦理)</h4>
+    <p>1. 桃園組(T1)/高雄組(T2)各自完成通關與換錢。</p>
+    <p>2. <strong>辦理 SeS 自動通關</strong> (滿 7 歲即可辦理)。</p>
+    
+    <div style="background: #fff9db; padding: 12px; border-radius: 8px; margin: 10px 0; font-size: 13px; border: 1px solid #ffe066;">
+        📍 <strong>SeS 註冊中心位置：</strong><br>
+        • <b>第一航廈 (T1)：</b> 3樓 出境大廳 H 區對面 (Gate 3 前)<br>
+        • <b>第二航廈 (T2)：</b> 2樓 諮詢服務中心旁 (政府綜合服務中心內)<br>
+        ⏰ 服務時間：07:00 - 19:00<br>
+        ⚠️ <strong>7-17歲：</strong>需家長陪同，並出示護照、英文戶籍謄本。
+    </div>
+
+    <p>3. 自行搭乘 AREX 機場快線(普通車) 前往金浦機場站。</p>
+    <span class="badge" style="background:#fff3cd; color:#856404;">💡 辦完後在群組報進度，直接去Airbnb集合</span>
+</div>
     </div>
   
     <div class="timeline-item">
@@ -716,14 +725,16 @@
     <div class="timeline-item">
         <div class="time-tag">14:30</div>
         <div class="event-info">
-            <h4>景點自選</h4>
+            <h4>景點自選 (推薦望遠市場)</h4>
             <ul style="padding-left:18px; margin:5px 0; font-size:14px; color:#555;">
                 <li><strong>首爾植物園：</strong>溫室、湖邊步道 (02-2104-9716)</li>
+                <li><strong>望遠市場：</strong>必吃辣椒炸肉捲、Qs炸雞、糖餅。</li>
                 <li><strong>松花壁畫市場：</strong>在地市場、藝術壁畫 (02-2696-5225)</li>
                 <li><strong>國立航空博物館：</strong>室內展覽、免門票 (02-6940-3198)</li>
             </ul>
             <div class="btn-group">
                 <a href="https://map.naver.com/v5/search/서울식물원" target="_blank" class="nav-btn">📍 植物園</a>
+                <a href="https://map.naver.com/v5/entry/place/13306635" target="_blank" class="nav-btn">📍 望遠市場</a>
                 <a href="https://map.naver.com/v5/search/송화벽화시장" target="_blank" class="nav-btn">📍 壁畫市場</a>
                 <a href="https://map.naver.com/v5/search/국립항공박물관" target="_blank" class="nav-btn">📍 航空館</a>
             </div>
@@ -749,6 +760,303 @@
             <a href="https://map.naver.com/v5/search/교촌치킨+마곡역점" target="_blank" class="nav-btn">📍 Naver Map 導航</a>
         </div>
     </div>
+  
+    <div style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">
+    <h3 style="display: flex; align-items: center; gap: 8px;">Day 1 推薦清單 (40精選)</h3>
+    <div id="day1-section">
+        <div class="spot-filter-container">
+            <button class="filter-btn active" onclick="filterSpots('all', this)">全部</button>
+            <button class="filter-btn" onclick="filterSpots('mangwon', this)">望遠市場(15)</button>
+            <button class="filter-btn" onclick="filterSpots('magok', this)">麻谷/植物園(15)</button>
+            <button class="filter-btn" onclick="filterSpots('local', this)">松亭/在地(10)</button>
+        </div>
+
+        <div class="spot-list">
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-01 | 必吃</div>
+                <h4>宇耳樂 (Uirak) 炸辣椒</h4>
+                <p>巨大青椒塞滿肉餡，望遠市場頭號名店。</p>
+                <div class="spot-info">📞 0507-1437-1239</div>
+                <a href="https://map.naver.com/v5/entry/place/1376839353" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-02 | 炸雞</div>
+                <h4>Qs 炸雞丁 (큐스닭강정)</h4>
+                <p>多種口味炸雞丁，排隊人潮極多。</p>
+                <div class="spot-info">📞 02-3143-5397</div>
+                <a href="https://map.naver.com/v5/entry/place/19864222" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-03 | 甜點</div>
+                <h4>望遠手工可樂餅</h4>
+                <p>銅板價名店，雜菜口味是經典。</p>
+                <div class="spot-info">📞 02-336-7437</div>
+                <a href="https://map.naver.com/v5/entry/place/31032822" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-04 | 糖餅</div>
+                <h4>薰子糖餅 (훈훈호떡)</h4>
+                <p>起司粉糖餅視覺感爆發，在市場 B1。</p>
+                <div class="spot-info">📞 010-8636-2158</div>
+                <a href="https://map.naver.com/v5/entry/place/1598421869" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-05 | 刀切麵</div>
+                <h4>故鄉手刀切麵</h4>
+                <p>20年老店，麵條純手工，湯頭鮮甜。</p>
+                <div class="spot-info">📞 02-322-3232</div>
+                <a href="https://map.naver.com/v5/entry/place/13506306" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-06 | 豬蹄</div>
+                <h4>望遠洞豬蹄</h4>
+                <p>肉質Q彈，在地人晚上最愛的下酒菜。</p>
+                <div class="spot-info">📞 02-337-1248</div>
+                <a href="https://map.naver.com/v5/entry/place/19861618" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-07 | 飯捲</div>
+                <h4>婆婆飯捲 (할머니김밥)</h4>
+                <p>簡單卻耐吃的家常味，紫菜香氣十足。</p>
+                <div class="spot-info">📞 02-333-3122</div>
+                <a href="https://map.naver.com/v5/entry/place/37837095" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-08 | 麵包</div>
+                <h4>Ugly Bakery</h4>
+                <p>爆漿紅豆奶油麵包，麵包控必朝聖。</p>
+                <div class="spot-info">📞 02-338-9286</div>
+                <a href="https://map.naver.com/v5/entry/place/1739343389" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-09 | 小吃</div>
+                <h4>望遠餅食 (Tteokgalbi)</h4>
+                <p>純手工煎製肉餅，香氣四溢。</p>
+                <div class="spot-info">📞 0507-1335-0810</div>
+                <a href="https://map.naver.com/v5/entry/place/1653833215" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-10 | 咖啡</div>
+                <h4>咖啡院子</h4>
+                <p>文青風格，適合逛累了坐下休息。</p>
+                <div class="spot-info">📞 070-4155-3333</div>
+                <a href="https://map.naver.com/v5/entry/place/1206140411" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-11 | 豬骨湯</div>
+                <h4>一等餐館 (豬骨解酒湯)</h4>
+                <p>大塊豬骨熬至軟爛，湯頭濃郁。</p>
+                <div class="spot-info">📞 02-333-0361</div>
+                <a href="https://map.naver.com/v5/entry/place/11608688" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-12 | 辣炒年糕</div>
+                <h4>釜山大元辣炒年糕</h4>
+                <p>正宗釜山風格，魚板與粗年糕完美契合。</p>
+                <div class="spot-info">📞 02-333-7744</div>
+                <a href="https://map.naver.com/v5/entry/place/21006509" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-13 | 水果</div>
+                <h4>市場當季水果攤</h4>
+                <p>推薦買麝香葡萄或草莓回民宿吃。</p>
+                <div class="spot-info">📍 市場中段位置</div>
+                <a href="https://map.naver.com/v5/entry/place/13306635" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-14 | 紅魚</div>
+                <h4>望遠紅魚</h4>
+                <p>挑戰型美食，敢吃的人非常愛。</p>
+                <div class="spot-info">📞 02-338-3001</div>
+                <a href="https://map.naver.com/v5/entry/place/19864228" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card mangwon" data-category="mangwon">
+                <div class="spot-tag">D1-15 | 飯糰</div>
+                <h4>飯糰專賣店</h4>
+                <p>適合買了帶去植物園野餐。</p>
+                <div class="spot-info">📞 02-333-3122</div>
+                <a href="https://map.naver.com/v5/entry/place/13306635" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-16 | 正餐</div>
+                <h4>설반 (Sulban) 排骨湯</h4>
+                <p>大份量烤排骨湯，長輩最愛推薦。</p>
+                <div class="spot-info">📞 0507-1443-1011</div>
+                <a href="https://map.naver.com/v5/search/설반+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-17 | 咖啡</div>
+                <h4>Orient Coffee</h4>
+                <p>極簡風格，植物園旁最佳歇腳處。</p>
+                <div class="spot-info">📞 070-4113-1002</div>
+                <a href="https://map.naver.com/v5/search/오리엔트커피" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-18 | 日式</div>
+                <h4>三代烏龍麵</h4>
+                <p>現擀麵條，口感極度Q彈。</p>
+                <div class="spot-info">📞 0507-1334-1111</div>
+                <a href="https://map.naver.com/v5/entry/place/1333798444" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-19 | 炸豬排</div>
+                <h4>Gyeongyang Katsu</h4>
+                <p>精緻日式炸豬排定食，環境乾淨。</p>
+                <div class="spot-info">📞 02-2659-1900</div>
+                <a href="https://map.naver.com/v5/entry/place/1647209783" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-20 | 貝果</div>
+                <h4>Another Bagel</h4>
+                <p>麻谷人氣貝果店，多種抹醬可選。</p>
+                <div class="spot-info">📞 02-2665-1101</div>
+                <a href="https://map.naver.com/v5/entry/place/1879024441" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-21 | 義式</div>
+                <h4>Second Kitchen</h4>
+                <p>氣氛極佳的西餐廳，適合家庭聚餐。</p>
+                <div class="spot-info">📞 02-2659-2230</div>
+                <a href="https://map.naver.com/v5/entry/place/1110292812" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-22 | 韓式</div>
+                <h4>麻谷桌 (Magok Table)</h4>
+                <p>精緻韓式定食，配色漂亮，長輩也會愛。</p>
+                <div class="spot-info">📞 02-3665-0301</div>
+                <a href="https://map.naver.com/v5/entry/place/1243729911" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-23 | 麵包</div>
+                <h4>Bakery Cafe Bbang</h4>
+                <p>多樣現烤麵包，採光良好空間大。</p>
+                <div class="spot-info">📞 02-2668-3333</div>
+                <a href="https://map.naver.com/v5/entry/place/1564722811" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-24 | 越南菜</div>
+                <h4>Emoy 麻谷</h4>
+                <p>超正宗越南河粉，湯頭清甜解膩。</p>
+                <div class="spot-info">📞 02-3663-7178</div>
+                <a href="https://map.naver.com/v5/entry/place/1594228811" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-25 | 甜品</div>
+                <h4>Sulbing (雪冰) 麻谷</h4>
+                <p>韓國必吃黃豆粉年糕冰，夏天首選。</p>
+                <div class="spot-info">📞 02-3661-3311</div>
+                <a href="https://map.naver.com/v5/search/설빙+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-26 | 韓式火鍋</div>
+                <h4>Shabu KKR</h4>
+                <p>清淡的一人一鍋涮涮鍋，蔬菜新鮮。</p>
+                <div class="spot-info">📞 02-2662-3322</div>
+                <a href="https://map.naver.com/v5/entry/place/1123456789" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-27 | 三明治</div>
+                <h4>Egg Drop 麻谷</h4>
+                <p>超美拍吐司，厚實滑蛋必吃。</p>
+                <div class="spot-info">📞 02-3665-1234</div>
+                <a href="https://map.naver.com/v5/search/에그드랍+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-28 | 烤肉</div>
+                <h4>麻谷烤肉街任意店</h4>
+                <p>麻谷站出口附近整排烤肉店，盲選不踩雷。</p>
+                <div class="spot-info">📍 麻谷站 2 號出口旁</div>
+                <a href="https://map.naver.com/v5/search/마곡역+고기집" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-29 | 早午餐</div>
+                <h4>Brunch Cafe L'un</h4>
+                <p>視覺精美的早午餐盤，適合悠閒午後。</p>
+                <div class="spot-info">📞 02-3664-5566</div>
+                <a href="https://map.naver.com/v5/entry/place/1233445566" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card magok" data-category="magok">
+                <div class="spot-tag">D1-30 | 炸雞</div>
+                <h4>BHC 炸雞 麻谷中心店</h4>
+                <p>全智賢代言，必吃魔法粉炸雞 (Pringled)。</p>
+                <div class="spot-info">📞 02-3662-9989</div>
+                <a href="https://map.naver.com/v5/search/BHC+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-31 | 傳奇</div>
+                <h4>空港刀切麵</h4>
+                <p>白鍾元認證老店，就在民宿旁，辣蘑菇味必嚐。</p>
+                <div class="spot-info">📞 02-2664-9787</div>
+                <a href="https://map.naver.com/v5/entry/place/11832961" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-32 | 炸雞</div>
+                <h4>橋村炸雞 (Kyochon)</h4>
+                <p>經典蜂蜜系列，宵夜最佳選擇。</p>
+                <div class="spot-info">📞 02-3664-1991</div>
+                <a href="https://map.naver.com/v5/search/교촌치킨+마곡역점" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-33 | 飯捲</div>
+                <h4>魔女飯捲 (마녀김밥)</h4>
+                <p>特殊口感肉燥，韓國排隊名店連鎖。</p>
+                <div class="spot-info">📞 02-2661-1112</div>
+                <a href="https://map.naver.com/v5/search/마녀김밥+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-34 | 市場</div>
+                <h4>松花壁畫市場</h4>
+                <p>家常感十足的市場，推薦血腸與辣炒年糕攤。</p>
+                <div class="spot-info">📞 02-2696-5225</div>
+                <a href="https://map.naver.com/v5/entry/place/13306655" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-35 | 烤肉</div>
+                <h4>金錢豬烤肉</h4>
+                <p>松亭站著名的平價高品質黑豬肉店。</p>
+                <div class="spot-info">📞 02-2665-3333</div>
+                <a href="https://map.naver.com/v5/search/송정역+고기집" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-36 | 中式</div>
+                <h4>香港飯店 (Hongkong Banjum)</h4>
+                <p>白鍾元品牌，必吃炸醬面與糖醋肉。</p>
+                <div class="spot-info">📞 02-2661-0410</div>
+                <a href="https://map.naver.com/v5/search/홍콩반점+마곡" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-37 | 豬蹄</div>
+                <h4>最美味的豬蹄</h4>
+                <p>連鎖豬蹄名店，口感軟嫩且完全無騷味。</p>
+                <div class="spot-info">📞 02-2666-8888</div>
+                <a href="https://map.naver.com/v5/search/가장맛있는족발+송정" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-38 | 解酒湯</div>
+                <h4>無名氏解酒湯</h4>
+                <p>松亭站傳統老店，清晨開始就有許多當地人進補。</p>
+                <div class="spot-info">📍 松亭站 1 號出口旁</div>
+                <a href="https://map.naver.com/v5/search/송정역+해장국" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-39 | 麵包</div>
+                <h4>Paris Baguette</h4>
+                <p>韓國最大的連鎖麵包店，早餐最方便的選擇。</p>
+                <div class="spot-info">📍 松亭站站前</div>
+                <a href="https://map.naver.com/v5/search/파리바게뜨+송정" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+            <div class="spot-card local" data-category="local">
+                <div class="spot-tag">D1-40 | 咖啡</div>
+                <h4>Mega Coffee</h4>
+                <p>大容量、低單價，韓國人每天早上的精神食糧。</p>
+                <div class="spot-info">📍 松亭站周邊多處</div>
+                <a href="https://map.naver.com/v5/search/메가커피+송정" target="_blank" class="nav-btn-sm">Naver</a>
+            </div>
+        </div>
+    </div>
+</div>
 </div></div>
 
 <div id="day-d2" class="day-tab" style="display:none;">
@@ -2393,39 +2701,663 @@
 </div>
 </div></div>
 
-    <div id="day-d5" class="day-tab" style="display:none">
-         <img src="https://picsum.photos/600/300?random=map5" class="day-map-image" alt="Day 5 Map">
-        <div class="card">
-            <div class="timeline-item">
-                <div class="time-tag">07:30</div>
-                <div class="event-info">
-                    [cite_start]<h4>早餐：倫敦貝果博物館 (濟州店) [cite: 50]</h4>
-                    [cite_start]<p>貝果+咖啡，可打包在路上吃 [cite: 50]。</p>
+    <div id="day-d5" class="day-tab" style="display:none;">
+    <img src="Seoul1.png" class="day-map-image" alt="Day 5 Map">
+    <div class="card">
+        
+        <div class="timeline-item">
+            <div class="time-tag">9:00</div>
+            <div class="event-info">
+                <h4>樂天租車還車：Jeju Auto House 匯合</h4>
+                <p><strong>🕒 行動：</strong> 全員由濟州民宿出發。<b>自駕組</b>開車前往；<b>計程車組</b>因行李量較大，請利用 Kakao Taxi 叫車前往租車中心匯合。</p>
+                <div class="spot-info">
+                    <strong>📢 樂天還車與計程車分流提醒：</strong><br>
+                    1. <strong>計程車組：</strong>定位設為「Lotte Rent-a-Car Jeju Auto House」，在大廳等候。<br>
+                    2. <strong>自駕組：</strong>還車前請加滿油，跟隨「Return (반납)」指標進入還車道。<br>
+                    3. <strong>匯合後：</strong>全員搭乘樂天免費接駁車（8-10 分鐘一班）前往機場 3 樓離境大廳。
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">08:30</div>
-                <div class="event-info">
-                    [cite_start]<h4>前往濟州機場 [cite: 50]</h4>
-                    [cite_start]<p>辦理樂天還車，辦理國內線登機 [cite: 50]。</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">12:45</div>
-                <div class="event-info">
-                    [cite_start]<h4>飛回金浦機場 [cite: 50]</h4>
-                    [cite_start]<p>國內線班機 (如 KE1107) [cite: 50]。</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">下午</div>
-                <div class="event-info">
-                    [cite_start]<h4>入住首爾市區飯店 [cite: 55]</h4>
-                    [cite_start]<p>建議地點：明洞或江南 [cite: 55]。</p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                    <a href="https://map.naver.com/v5/entry/place/13149594" target="_blank" class="nav-btn-sm">📍 導航至樂天租車</a>
                 </div>
             </div>
         </div>
-    </div></div>
+
+        <div class="timeline-item">
+            <div class="time-tag">10:00</div>
+            <div class="event-info">
+                <h4>機場早餐：Egg Drop 濟州機場店</h4>
+                <p><strong>🕒 行動：</strong> 報到後在航廈內用餐。這是確保 11:30 準時登機最安全的方案。</p>
+                <div class="spot-info">
+                    📞 064-743-0067 | ⏰ 07:00 - 21:00
+                </div>
+                <a href="https://map.naver.com/v5/entry/place/1473216892" target="_blank" class="nav-btn-sm">📍 導航至 Egg Drop</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="time-tag">12:45</div>
+            <div class="event-info">
+                <h4>抵達首爾 ✈️ 交通方式三選一</h4>
+                <p><strong>🕒 行動：</strong> 領完行李後，前往西村（Bibimbap Guesthouse）寄放行李：</p>
+                <p>
+                    • <strong>方案 A：計程車 (推薦)</strong> - 車程 40 分鐘，最省體力。<br>
+                    • <strong>方案 B：地鐵 (5號線)</strong> - 搭至「光化門站」，適合行李較少者。<br>
+                    • <strong>方案 C：機場巴士 (6001路)</strong> - 往光化門方向，有行李艙。
+                </p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                    <a href="https://map.naver.com/v5/entry/place/1310328221" target="_blank" class="nav-btn-sm">📍 導航至西村民宿</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="time-tag">14:15</div>
+            <div class="event-info">
+                <h4>午餐：三清洞麵疙瘩 (삼청동수제비)</h4>
+                <p><strong>必吃：</strong> 米其林必比登推薦。鯷魚高湯鮮甜，口感Q彈軟嫩。無午休，隨到隨吃。</p>
+                <div class="spot-info">
+                    📞 02-735-2965 | ⏰ 11:00 - 20:00
+                </div>
+                <a href="https://map.naver.com/v5/entry/place/11677335" target="_blank" class="nav-btn-sm">📍 導航至三清洞麵疙瘩</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="time-tag">15:30</div>
+            <div class="event-info">
+                <h4>景點：北村韓屋村漫步</h4>
+                <p><strong>規劃：</strong> 穿梭古老巷弄拍照（推薦北村 5、6 景）。請注意 17:00 後部分區域管制音量與參觀。</p>
+                <a href="https://map.naver.com/v5/entry/place/13491717" target="_blank" class="nav-btn-sm">📍 導航至北村韓屋村</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="time-tag">16:30</div>
+            <div class="event-info">
+                <h4>在北村韓屋村找間咖啡廳</h4>
+                <p></p>
+                <div class="spot-info">
+                    ⏰ 
+                </div>
+                <a href="https://map.naver.com/v5/entry/place/11612458" target="_blank" class="nav-btn-sm">📍 導航至</a>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="time-tag">18:30</div>
+            <div class="event-info">
+                <h4>晚餐：無垢屋 (무구옥)<strong>要候位!</strong></h4>
+                <p><strong>重點：</strong> 清爽北韓風味雞湯飯。味道純粹、雞肉軟嫩。晚餐後步行即可回到西村民宿。</p>
+                <div class="spot-info">
+                    ⏰ 11:30 - 20:00 (⚠️ 最後點餐 19:30)
+                </div>
+                <a href="https://map.naver.com/v5/entry/place/1410191834" target="_blank" class="nav-btn-sm">📍 導航至無垢屋</a>
+            </div>
+        </div>
+
+        <div class="timeline-item" style="border-bottom: none;">
+            <div class="time-tag">20:00</div>
+            <div class="event-info">
+                <h4>晚間自選熱點：首爾夜生活 (五選一)</h4>
+                <p><strong>🕒 行動：</strong> 晚餐後若有體力，可選一處前往。若累了則推薦在西村散步回民宿：</p>
+                <p>
+                    • <strong>南山公園</strong>：看夜景，體力負擔輕。<br>
+                    • <strong>明洞商圈</strong>：熱鬧逛街、藥妝小吃。<br>
+                    • <strong>盤浦漢江</strong>：看彩虹噴泉與江邊散步，漢江拉麵。<br>
+                    • <strong>弘大街區</strong>：街頭演出、活力商圈。<br>
+                    • <strong>東大門</strong>：外星飛船般的現代建築、購物。
+                </p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
+                    <a href="https://map.naver.com/v5/entry/place/11591544" target="_blank" class="nav-btn-sm">📍 南山</a>
+                    <a href="https://map.naver.com/v5/entry/place/13470701" target="_blank" class="nav-btn-sm">📍 明洞</a>
+                    <a href="https://map.naver.com/v5/entry/place/11622329" target="_blank" class="nav-btn-sm">📍 漢江</a>
+                    <a href="https://map.naver.com/v5/entry/place/13491361" target="_blank" class="nav-btn-sm">📍 弘大</a>
+                    <a href="https://map.naver.com/v5/entry/place/11571711" target="_blank" class="nav-btn-sm">📍 DDP</a>
+                </div>
+            </div>
+        </div>
+      
+      
+<div style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">
+    <h3 style="display: flex; align-items: center; gap: 8px;">Day 5 推薦清單 (精選 82 家)</h3>
+  
+    <div class="timeline-item" style="border-left: 3px solid #d1d9e0; background-color: #fafafa; border-radius: 10px; padding: 15px;">
+    <div class="event-info">
+        <h4 style="margin-bottom: 15px; color: #555;">📍 首爾精選：區域綜合導航</h4>
+        
+        <div style="display: grid; gap: 10px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 500; color: #8eb19d;">西村 / 景福宮西側</span>
+                <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%B4%8C%20%EB%A7%9B%EC%A7%91" target="_blank" class="nav-btn" style="background-color: #e8f5e9; color: #4caf50; padding: 4px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85em; border: 1px solid #c8e6c9;">📍 導航</a>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 500; color: #d4a373;">北村 / 韓屋村周邊</span>
+                <a href="https://map.naver.com/v5/search/%EB%B6%81%EC%B4%8C%20%EB%A7%9B%EC%A7%91" target="_blank" class="nav-btn" style="background-color: #fff3e0; color: #fb8c00; padding: 4px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85em; border: 1px solid #ffe0b2;">📍 導航</a>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 500; color: #85a5c2;">三清洞 / 文藝街區</span>
+                <a href="https://map.naver.com/v5/search/%EC%82%BC%EC%B2%AD%EB%8F%99%20%EB%A7%9B%EC%A7%91" target="_blank" class="nav-btn" style="background-color: #e3f2fd; color: #1e88e5; padding: 4px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85em; border: 1px solid #bbdefb;">📍 導航</a>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px; border-bottom: 1px dashed #eee;">
+                <span style="font-weight: 500; color: #a68db3;">夜間熱點 / 景觀</span>
+                <a href="https://map.naver.com/v5/search/%EC%84%9C%EC%9A%B8%20%EC%95%BC%EA%B2%BD%20%EB%A7%9B%EC%A7%91" target="_blank" class="nav-btn" style="background-color: #f3e5f5; color: #8e24aa; padding: 4px 12px; border-radius: 6px; text-decoration: none; font-size: 0.85em; border: 1px solid #e1bee7;">📍 導航</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <div id="day5-section">
+        <div class="spot-filter-container">
+            <button class="filter-btn active" onclick="filterSpots('all', this)">全部</button>
+            <button class="filter-btn" onclick="filterSpots('west', this)">西村/景福宮</button>
+            <button class="filter-btn" onclick="filterSpots('north', this)">北村/三清洞</button>
+            <button class="filter-btn" onclick="filterSpots('night', this)">夜間熱點</button>
+        </div>
+
+        <div class="spot-list">
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-01 | 必吃 / 雞湯</div>
+                <h4>無垢屋 (무구옥)</h4>
+                <p>清甜雞湯飯，環境優雅。地址：서울 종로구 필운대로 18</p>
+                <a href="https://map.naver.com/v5/search/무구옥" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-02 | 必吃 / 蔘雞湯</div>
+                <h4>土俗村蔘雞湯 (토속촌 삼계탕)</h4>
+                <p>首爾最具代表性，濃郁湯頭。地址：서울 종로구 자하문로5길 5</p>
+                <a href="https://map.naver.com/v5/search/토속촌삼계탕" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-03 | 打卡 / 書店</div>
+                <h4>大悟書店 (대오서점)</h4>
+                <p>最老書店咖啡廳。地址：서울 종로구 자하문로7길 55</p>
+                <a href="https://map.naver.com/v5/search/대오서점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-04 | 體驗 / 市場</div>
+                <h4>通仁市場 (통인시장)</h4>
+                <p>銅錢便當體驗。地址：서울 종로구 자하문로15길 18</p>
+                <a href="https://map.naver.com/v5/search/통인시장" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-05 | 必買 / 香氛</div>
+                <h4>Granhand 西村 (그랑핸드 서촌)</h4>
+                <p>小眾高級香氛。地址：서울 종로구 자하문로4길 14-2</p>
+                <a href="https://map.naver.com/v5/search/그랑핸드서촌" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-06 | 咖啡 / 銀杏</div>
+                <h4>Staff Pick (스태픽스)</h4>
+                <p>戶外大草皮景觀咖啡。地址：서울 종로구 사직로9길 22</p>
+                <a href="https://map.naver.com/v5/search/스태픽스" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-07 | 美食 / 中式</div>
+                <h4>永和樓 (영화루)</h4>
+                <p>辣椒炸醬麵老字號。地址：서울 종로구 자하문로7길 65</p>
+                <a href="https://map.naver.com/v5/search/서촌영화루" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-08 | 景點 / 自然</div>
+                <h4>水聲洞溪谷 (수성동계곡)</h4>
+                <p>仁王山下絕美古景。地址：서울 종로구 옥인동 185-3</p>
+                <a href="https://map.naver.com/v5/search/수성동계곡" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-09 | 麵包 / 甜點</div>
+                <h4>Daelim Scoon (대림스콘)</h4>
+                <p>英式司康專賣店。地址：서울 종로구 효자로13길 33</p>
+                <a href="https://map.naver.com/v5/search/대림스콘" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-10 | 美食 / 海鮮</div>
+                <h4>西村階梯家 (서촌계단집)</h4>
+                <p>現捕海鮮排隊店。地址：서울 종로구 자하문로1길 15</p>
+                <a href="https://map.naver.com/v5/search/서촌계단집" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-11 | 雜貨 / 文創</div>
+                <h4>One More Bag (원모어백)</h4>
+                <p>人氣帆布包選物店。地址：서울 종로구 필운대로 6-1</p>
+                <a href="https://map.naver.com/v5/search/원모어백" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-12 | 必吃 / 定食</div>
+                <h4>緊密 (밀끼니)</h4>
+                <p>傳統手捏餃子。地址：서울 종로구 자하문로7길 34</p>
+                <a href="https://map.naver.com/v5/search/밀끼니" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-13 | 景點 / 古宮</div>
+                <h4>景福宮 迎秋門 (경복궁 영추문)</h4>
+                <p>西村側入口，景致幽靜。地址：서울 종로구 효자로 12</p>
+                <a href="https://map.naver.com/v5/search/경복궁영추문" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-14 | 咖啡 / 職人</div>
+                <h4>Astar Coffee (아스타커피)</h4>
+                <p>手沖精品咖啡。地址：서울 종로구 자하문로7길 24</p>
+                <a href="https://map.naver.com/v5/search/아스타커피" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-15 | 打卡 / 藝文</div>
+                <h4>Boan Books (보안책방)</h4>
+                <p>古老旅館改建書店。地址：서울 종로구 효자로 33</p>
+                <a href="https://map.naver.com/v5/search/보안책방" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-16 | 必吃 / 豬腳</div>
+                <h4>孝子洞豬腳 (효자동족발)</h4>
+                <p>皮Q肉嫩老字號。地址：서울 종로구 필운대로 54</p>
+                <a href="https://map.naver.com/v5/search/효자동족발" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-17 | 必吃 / 牛湯</div>
+                <h4>黃漆家 (황칠가)</h4>
+                <p>養生牛骨湯飯。地址：서울 종로구 자하문로 35-1</p>
+                <a href="https://map.naver.com/v5/search/황칠가" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-18 | 雜貨 / 法式</div>
+                <h4>Ofr. Seoul (오에프알 서울)</h4>
+                <p>巴黎風格書店雜貨。地址：서울 종로구 자하문로12길 11-14</p>
+                <a href="https://map.naver.com/v5/search/ofrseoul" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-19 | 美食 / 豬排</div>
+                <h4>西村美味 (서촌길돈까스)</h4>
+                <p>古法炸豬排。地址：서울 종로구 자하문로 17-2</p>
+                <a href="https://map.naver.com/v5/search/서촌길돈까스" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-20 | 景點 / 博物館</div>
+                <h4>國立故宮博物館 (국립고궁박물관)</h4>
+                <p>朝鮮皇室珍藏。地址：서울 종로구 효자로 12</p>
+                <a href="https://map.naver.com/v5/search/국립고궁박물관" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-21 | 甜點 / 蛋塔</div>
+                <h4>Aux Grands Verres (통인스윗)</h4>
+                <p>排隊蛋塔店。地址：서울 종로구 자하문로7길 50</p>
+                <a href="https://map.naver.com/v5/search/통인스윗" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-22 | 景點 / 散步</div>
+                <h4>孝子路石牆路 (효자로 돌담길)</h4>
+                <p>最美銀杏大道。地址：서울 종로구 효자로</p>
+                <a href="https://map.naver.com/v5/search/효자로돌담길" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-23 | 雜貨 / 文創</div>
+                <h4>Unfold (언폴드)</h4>
+                <p>簡約設計布包店。地址：서울 종로구 필운대로 42</p>
+                <a href="https://map.naver.com/v5/search/언폴드서촌" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-24 | 美食 / 烏龍</div>
+                <h4>Hibarin 西村 (히바린 서촌)</h4>
+                <p>創意豬排與冷麵。地址：서울 종로구 자하문로 20</p>
+                <a href="https://map.naver.com/v5/search/히바린서촌" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card west" data-category="west">
+                <div class="spot-tag">D5-25 | 必吃 / 烤雞</div>
+                <h4>桂圓 (계원)</h4>
+                <p>炭火烤雞專賣。地址：서울 종로구 자하문로7길 9</p>
+                <a href="https://map.naver.com/v5/search/서촌계원" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-26 | 必吃 / 麵疙瘩</div>
+                <h4>三清洞麵疙瘩 (삼청동수제비)</h4>
+                <p>必比登名店。地址：서울 종로구 삼청로 101-1</p>
+                <a href="https://map.naver.com/v5/search/삼청동수제비" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-27 | 必喝 / 茶軒</div>
+                <h4>及得樓 (차뜰)</h4>
+                <p>韓屋美景下午茶。地址：서울 종로구 삼청로2길 25-2</p>
+                <a href="https://map.naver.com/v5/search/차뜰" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-28 | 景點 / 韓屋</div>
+                <h4>北村韓屋村 (북촌한옥마을)</h4>
+                <p>經典韓屋建築群。地址：서울 종로구 계동길 37</p>
+                <a href="https://map.naver.com/v5/search/북촌한옥마을" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-29 | 咖啡 / 網美</div>
+                <h4>Cafe Onion 安國 (카페어니언 안국)</h4>
+                <p>大型韓屋麵包坊。地址：서울 종로구 계동길 5</p>
+                <a href="https://map.naver.com/v5/search/어니언안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-30 | 打卡 / 甜點</div>
+                <h4>橡果花園 (도토리가든 안국)</h4>
+                <p>吉卜力風咖啡廳。地址：서울 종로구 계동길 19-8</p>
+                <a href="https://map.naver.com/v5/search/도토리가든안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-31 | 必買 / 香氛</div>
+                <h4>Tamburins 三清 (탬버린즈 삼청)</h4>
+                <p>旗艦工藝空間。地址：서울 종로구 율곡로3길 84</p>
+                <a href="https://map.naver.com/v5/search/탬버린즈삼청" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-32 | 必吃 / 刀切麵</div>
+                <h4>黃生家刀切麵 (황생가칼국수)</h4>
+                <p>牛骨湯刀切麵名店。地址：서울 종로구 북촌로5길 78</p>
+                <a href="https://map.naver.com/v5/search/황생가칼국수" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-33 | 咖啡 / 景觀</div>
+                <h4>藍瓶咖啡 三清 (블루보틀 삼청)</h4>
+                <p>韓屋瓦頂景觀。地址：서울 종로구 북촌로5길 76</p>
+                <a href="https://map.naver.com/v5/search/블루보틀삼청" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-34 | 美食 / 燒肉</div>
+                <h4>滿亭 (만정)</h4>
+                <p>高品質韓牛。地址：서울 종로구 삼청로 124-2</p>
+                <a href="https://map.naver.com/v5/search/삼청동만정" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-35 | 必吃 / 甜品</div>
+                <h4>首爾第二好吃的店 (서울서둘째로잘하는집)</h4>
+                <p>傳統紅豆粥。地址：서울 종로구 삼청로 122-1</p>
+                <a href="https://map.naver.com/v5/search/서울서둘째로잘하는집" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-36 | 麵包 / 鹽卷</div>
+                <h4>Artist Bakery (아티스트베이커리)</h4>
+                <p>各式鹽可頌。地址：서울 종로구 율곡로 45</p>
+                <a href="https://map.naver.com/v5/search/아티스트베이커리안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-37 | 雜貨 / 文創</div>
+                <h4>Object 三清 (오브젝트 삼청)</h4>
+                <p>質感插畫選物。地址：서울 종로구 북촌로5길 6</p>
+                <a href="https://map.naver.com/v5/search/오브젝트삼청" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-38 | 景點 / 藝術</div>
+                <h4>國立現代美術館 (국립현대미술관 서울)</h4>
+                <p>當代藝術地標。地址：서울 종로구 삼청로 30</p>
+                <a href="https://map.naver.com/v5/search/국립현대미술관서울" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-39 | 必吃 / 家常</div>
+                <h4>三清花 (삼청화)</h4>
+                <p>美味韓式定食。地址：서울 종로구 북촌로5가길 17-5</p>
+                <a href="https://map.naver.com/v5/search/삼청화" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-40 | 咖啡 / 屋頂</div>
+                <h4>Green Mile Coffee (그린마일커피)</h4>
+                <p>可俯瞰韓屋頂。地址：서울 종로구 북촌로 64</p>
+                <a href="https://map.naver.com/v5/search/그린마일커피" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-41 | 必吃 / 餃子</div>
+                <h4>北村手工餃子 (북촌손만두)</h4>
+                <p>巨大脆皮炸餃。地址：서울 종로구 인사동길 42-5 (本店)</p>
+                <a href="https://map.naver.com/v5/search/북촌손만두안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-42 | 必買 / 香氛</div>
+                <h4>Nonfiction 三清 (논픽션 삼청)</h4>
+                <p>質感身體護理。地址：서울 종로구 북촌로5길 19</p>
+                <a href="https://map.naver.com/v5/search/논픽션삼청" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-43 | 景點 / 地標</div>
+                <h4>青瓦台 (청와대)</h4>
+                <p>總統官邸開放。地址：서울 종로구 청와대로 1</p>
+                <a href="https://map.naver.com/v5/search/청와대" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-44 | 景點 / 散步</div>
+                <h4>三清洞石牆路 (삼청동 돌담길)</h4>
+                <p>熱門韓劇拍地。地址：서울 종로구 삼청로</p>
+                <a href="https://map.naver.com/v5/search/삼청동돌담길" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-45 | 咖啡 / 名店</div>
+                <h4>Fritz Coffee (프릳츠 원서점)</h4>
+                <p>昌德宮牆旁咖啡。地址：서울 종로구 율곡로 83</p>
+                <a href="https://map.naver.com/v5/search/프릳츠원서점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-46 | 必吃 / 創意韓食</div>
+                <h4>Dooreyoo (두레유)</h4>
+                <p>星級韓食主廚。地址：서울 종로구 가회동 16-12</p>
+                <a href="https://map.naver.com/v5/search/두레유" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-47 | 體驗 / 手作</div>
+                <h4>雪花秀 北村旗艦店 (설화수 북촌)</h4>
+                <p>頂級工藝體驗。地址：서울 종로구 북촌로 47</p>
+                <a href="https://map.naver.com/v5/search/설화수북촌" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-48 | 咖啡 / 茶館</div>
+                <h4>Ma Chance (마샹스)</h4>
+                <p>優雅三清洞下午茶。地址：서울 종로구 자하문로 36</p>
+                <a href="https://map.naver.com/v5/search/마샹스" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-49 | 雜貨 / 陶瓷</div>
+                <h4>宜道 Yido Pot (이도)</h4>
+                <p>精緻生活陶瓷。地址：서울 종로구 창덕궁길 191</p>
+                <a href="https://map.naver.com/v5/search/이도포트" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-50 | 必喝 / 傳統茶</div>
+                <h4>首爾茶軒 (서울다원)</h4>
+                <p>北村巷弄茶館。地址：서울 종로구 북촌로11길 21</p>
+                <a href="https://map.naver.com/v5/search/서울다원" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-51 | 景點 / 工藝</div>
+                <h4>首爾工藝博物館 (서울공예박물관)</h4>
+                <p>全新地標博物館。地址：서울 종로구 율곡로3길 4</p>
+                <a href="https://map.naver.com/v5/search/서울공예박물관" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-52 | 必買 / 香氛</div>
+                <h4>Buly 1803 三清 (불리1803 삼청)</h4>
+                <p>復古奢華香氛。地址：서울 종로구 삼청로 104</p>
+                <a href="https://map.naver.com/v5/search/불리1803삼청" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-53 | 必吃 / 湯飯</div>
+                <h4>安岩 (안암)</h4>
+                <p>創意系豬肉湯飯。地址：서울 종로구 북촌로5길 10</p>
+                <a href="https://map.naver.com/v5/search/북촌안암" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-54 | 必買 / 茶品</div>
+                <h4>Osulloc 現代美術館 (오설록 티하우스)</h4>
+                <p>頂級綠茶專賣。地址：서울 종로구 삼청로 30</p>
+                <a href="https://map.naver.com/v5/search/오설록티하우스현대미술관" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-55 | 景點 / 拍照</div>
+                <h4>北村 8 景 (북촌8경)</h4>
+                <p>連接三清洞石階。地址：서울 종로구 삼청동</p>
+                <a href="https://map.naver.com/v5/search/북촌8경" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-56 | 夜景 / 地標</div>
+                <h4>南山首爾塔 (N서울타워)</h4>
+                <p>俯瞰全首爾夜景。地址：서울 용산구 남산공원길 105</p>
+                <a href="https://map.naver.com/v5/search/N서울타워" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-57 | 夜景 / 噴泉</div>
+                <h4>盤浦漢江彩虹噴泉 (반포한강공원 달빛무지개분수)</h4>
+                <p>世界最長噴泉秀。地址：서울 서초구 신반포로11길 40</p>
+                <a href="https://map.naver.com/v5/search/반포무지개분수" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-58 | 購物 / 小吃</div>
+                <h4>明洞夜市 (명동야시장)</h4>
+                <p>特色路邊攤聚集。地址：서울 중구 명동8길</p>
+                <a href="https://map.naver.com/v5/search/명동거리" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-59 | 必吃 / 麵食</div>
+                <h4>明洞餃子 本店 (명동교자 본점)</h4>
+                <p>米其林刀切麵。地址：서울 중구 명동10길 29</p>
+                <a href="https://map.naver.com/v5/search/명동교자본점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-60 | 打卡 / 露台</div>
+                <h4>Molto Espresso Bar (몰또 에스프레소 바)</h4>
+                <p>直對明洞聖堂景。地址：서울 중구 명동길 73</p>
+                <a href="https://map.naver.com/v5/search/몰또에스프레소바" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-61 | 建築 / 夜景</div>
+                <h4>東大門 DDP (동대문디자인플라자)</h4>
+                <p>科幻風銀色建築。地址：서울 중구 을지로 281</p>
+                <a href="https://map.naver.com/v5/search/DDP" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-62 | 必吃 / 宵夜</div>
+                <h4>陳玉華一隻雞 (진옥화할매원조닭한마리)</h4>
+                <p>東大門美食代表。地址：서울 종로구 종로40가길 18</p>
+                <a href="https://map.naver.com/v5/search/진옥화할매원조닭한마리" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-63 | 購物 / 年輕</div>
+                <h4>弘大 停車場街 (홍대 걷고싶은거리)</h4>
+                <p>服飾與街頭氛圍。地址：서울 마포구 어울마당로</p>
+                <a href="https://map.naver.com/v5/search/홍대걷고싶은거리" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-64 | 街頭 / 演出</div>
+                <h4>弘大 公演區 (홍대 버스킹거리)</h4>
+                <p>晚間舞蹈與音樂演出。地址：서울 마포구 서교동</p>
+                <a href="https://map.naver.com/v5/search/홍대버스킹거리" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-65 | 必吃 / 湯飯</div>
+                <h4>河東館 明洞 (하동관 명동본점)</h4>
+                <p>百年牛骨湯名店。地址：서울 중구 명동9길 12</p>
+                <a href="https://map.naver.com/v5/search/하동관명동본점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-66 | 購物 / 雜貨</div>
+                <h4>明洞 大創 (다이소 명동역점)</h4>
+                <p>12層樓旗艦店。地址：서울 중구 퇴계로 134-1</p>
+                <a href="https://map.naver.com/v5/search/다이소명동역점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-67 | 必吃 / 粥品</div>
+                <h4>多味粥 (다미죽)</h4>
+                <p>明洞高人氣鮑魚粥。地址：서울 중구 명동7길 22-9</p>
+                <a href="https://map.naver.com/v5/search/명동다미죽" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-68 | 雜貨 / 可愛</div>
+                <h4>Butter 弘大店 (버터 홍대점)</h4>
+                <p>創意插畫選物店。地址：서울 마포구 양화로 153</p>
+                <a href="https://map.naver.com/v5/search/버터홍대점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-69 | 夜景 / 散步</div>
+                <h4>駱山公園 (낙산공원)</h4>
+                <p>漢陽都城夜景。地址：서울 종로구 낙산길 41</p>
+                <a href="https://map.naver.com/v5/search/낙산공원" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-70 | 必吃 / 雪濃湯</div>
+                <h4>神仙雪濃湯 (신선설농탕 명동점)</h4>
+                <p>香濃白湯國民美食。地址：서울 중구 명동길 56</p>
+                <a href="https://map.naver.com/v5/search/신선설농탕명동점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-71 | 景點 / 聖堂</div>
+                <h4>明洞聖堂 (명동대성당)</h4>
+                <p>哥德式點燈建築。地址：서울 중구 명동길 74</p>
+                <a href="https://map.naver.com/v5/search/명동대성당" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-72 | 咖啡 / 花店</div>
+                <h4>Colline 弘大 (콜린)</h4>
+                <p>花海溫室咖啡廳。地址：서울 마포구 어울마당로 45</p>
+                <a href="https://map.naver.com/v5/search/홍대콜린" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-73 | 美食 / 烤魚</div>
+                <h4>烤魚一條街 (동대문 생선구이 골목)</h4>
+                <p>炭火烤鮮魚香氣。地址：서울 종로구 종로40가길</p>
+                <a href="https://map.naver.com/v5/search/동대문생선구이골목" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-74 | 景點 / 運河</div>
+                <h4>清溪川 (청계천)</h4>
+                <p>晚間流水與步道。地址：서울 종로구 서린동</p>
+                <a href="https://map.naver.com/v5/search/청계광장" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-75 | 必喝 / 啤酒</div>
+                <h4>乙支路 滿船屋 (만선호프)</h4>
+                <p>韓國大排檔氛圍。地址：서울 중구 을지로13길 19</p>
+                <a href="https://map.naver.com/v5/search/을지로만선호프" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-76 | 必吃 / 烤肉</div>
+                <h4>黃金牧場 (황금목장 명동성당점)</h4>
+                <p>代烤高品質燒肉。地址：서울 중구 명동10길 23</p>
+                <a href="https://map.naver.com/v5/search/황금목장명동성당점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-77 | 咖啡 / 傳統</div>
+                <h4>明洞 榮養茶 (고합다방)</h4>
+                <p>韓式傳統茶房。地址：서울 중구 명동길 26</p>
+                <a href="https://map.naver.com/v5/search/명동전통찻집" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-78 | 打卡 / 書店</div>
+                <h4>Arc.N.Book 市廳 (아크앤북 시청점)</h4>
+                <p>書牆隧道景觀。地址：서울 중구 을지로 29</p>
+                <a href="https://map.naver.com/v5/search/아크앤북시청점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-79 | 咖啡 / 連鎖</div>
+                <h4>Coffee Bean 三清 (커피빈 삼청동점)</h4>
+                <p>石牆路旁舒適咖啡。地址：서울 종로구 삼청로 109</p>
+                <a href="https://map.naver.com/v5/search/커피빈삼청동점" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card night" data-category="night">
+                <div class="spot-tag">D5-80 | 住宿 / 回憶</div>
+                <h4>拌飯民宿 (비빔밥한옥게스트하우스)</h4>
+                <p>西村寧靜韓屋夜。地址：서울 종로구 자하문로 28-11</p>
+                <a href="https://map.naver.com/v5/search/비빔밥한옥게스트하우스" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-81 | 甜點 / 布丁</div>
+                <h4>橡果花園 (도토리가든 안국)</h4>
+                <p>森林系布丁與瑪德蓮。地址：서울 종로구 계동길 19-8</p>
+                <a href="https://map.naver.com/v5/search/도토리가든안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+            <div class="spot-card north" data-category="north">
+                <div class="spot-tag">D5-82 | 甜點 / 滑順</div>
+                <h4>UMU 安國 (우무 안국)</h4>
+                <p>濟州島石花菜布丁。地址：서울 종로구 북촌로5길 43</p>
+                <a href="https://map.naver.com/v5/search/우무안국" target="_blank" class="nav-btn-sm">Naver Map</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
 
     <div id="day-d6" class="day-tab" style="display:none">
          <img src="https://picsum.photos/600/300?random=map6" class="day-map-image" alt="Day 6 Map">
